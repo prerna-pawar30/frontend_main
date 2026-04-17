@@ -5,10 +5,10 @@ import { Tabs } from "../components/ui/tabs";
 import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
 
 // Assets
-import scanBody1 from "../assets/Products/labanalog.webp";
-import scanBody2 from "../assets/Products/scanbody1.webp";
-import aboutmentImg from "../assets/Products/aboutment.webp";
-import screwImg from "../assets/Products/screw.webp";
+import scanBody1 from "../assets/products/labanalog.webp";
+import scanBody2 from "../assets/products/scanbody1.webp";
+import aboutmentImg from "../assets/products/aboutment.webp";
+import screwImg from "../assets/products/screw.webp";
 
 export default function Products() {
   const navigate = useNavigate(); // 2. Initialize navigate
