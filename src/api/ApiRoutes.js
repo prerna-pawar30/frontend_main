@@ -8,7 +8,7 @@ export const API_ROUTES = {
   BEST_SELLING: `${BASE_URL}${VERSION}/product/best-selling`,
   TESTIMONIALS: `${BASE_URL}${VERSION}/rating/home`,
   BANNER: `${BASE_URL}${VERSION}/banner/get`,
-  YT_VIDEO: `${BASE_URL}${VERSION}/ytviedo/get`,
+  YT_VIDEO: `${BASE_URL}${VERSION}/video/get`,
   BRAND_LOGO: `${BASE_URL}${VERSION}/brand/all`,
   EXTERNAL_FETCH: `${EXTERNAL_URL}/fetch-all`,
   EXTERNAL_DOWNLOAD: `${EXTERNAL_URL}/download`,
