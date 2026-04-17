@@ -1,0 +1,25 @@
+/* App layout */
+html,
+body {
+  overflow-x: hidden;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1550px;
+  margin: 0 auto;
+  /* padding: 1rem; */
+}
+
+.content {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 1.5rem;
+  padding-right: 0;
+  flex: 1 0 auto;
+}
