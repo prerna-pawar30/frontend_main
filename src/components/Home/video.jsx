@@ -20,26 +20,28 @@ export default function VideoGallery() {
   };
 
   useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        setLoading(true);
-        // 2. Use the service method instead of axios.get(YtVideoUrl)
-        const res = await apiService.getYtVideos();
-        
-        const formattedVideos = res.data?.videos?.map(vid => ({
-          id: vid.ytVideoId || vid._id,
-          vId: getYouTubeID(vid.link),
-          title: vid.title,
-          category: "Education" 
-        })) || [];
-        
-        setVideos(formattedVideos);
-      } catch (err) {
-        console.error("Failed to fetch YouTube videos:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+const fetchVideos = async () => {
+  try {
+    setLoading(true);
+    const res = await apiService.getYtVideos();
+    
+    // FIX: Access res.data.data.videos instead of res.data.videos
+    const videoList = res.data?.data?.videos || [];
+    
+    const formattedVideos = videoList.map(vid => ({
+      id: vid.ytVideoId || vid._id,
+      vId: getYouTubeID(vid.link),
+      title: vid.title,
+      category: "Education" 
+    }));
+    
+    setVideos(formattedVideos);
+  } catch (err) {
+    console.error("Failed to fetch YouTube videos:", err);
+  } finally {
+    setLoading(false);
+  }
+};
     fetchVideos();
   }, []);
 

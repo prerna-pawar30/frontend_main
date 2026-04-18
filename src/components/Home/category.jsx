@@ -31,24 +31,24 @@ export default function Category() {
       easing: "ease-in-out",
     });
 
-    const fetchCategories = async () => {
-      try {
-        // 2. Use the service method instead of axios.get(ExploreUrl)
-        const res = await apiService.getExploreItems();
-        
-        setExploreData({
-          loading: false,
-          data: res.data?.data || [],
-          error: null,
-        });
-      } catch (err) {
-        setExploreData({
-          loading: false,
-          data: [],
-          error: "Failed to load categories",
-        });
-      }
-    };
+const fetchCategories = async () => {
+  try {
+    const res = await apiService.getExploreItems();
+    
+    setExploreData({
+      loading: false,
+      // Access the specific categories array
+      data: res.data?.data?.categories || [], 
+      error: null,
+    });
+  } catch (err) {
+    setExploreData({
+      loading: false,
+      data: [],
+      error: "Failed to load categories",
+    });
+  }
+};
     fetchCategories();
   }, []);
 
@@ -102,7 +102,7 @@ export default function Category() {
               exploreData.data.map((cat, i) => (
                 <SwiperSlide key={cat.categoryId || cat._id || i}>
                   <div
-                    className="category-card rounded-[25px] border border-orange-200 p-6 flex flex-col items-center h-[360px]"
+                    className="category-card rounded-[25px] border-2 border-orange-200 p-6 flex flex-col items-center h-[360px]"
                     data-aos="fade-up"
                     data-aos-delay={i * 100}
                   >

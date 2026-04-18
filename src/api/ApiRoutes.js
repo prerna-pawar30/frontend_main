@@ -9,7 +9,7 @@ export const API_ROUTES = {
   TESTIMONIALS: `${BASE_URL}${VERSION}/rating/home`,
   BANNER: `${BASE_URL}${VERSION}/banner/get`,
   YT_VIDEO: `${BASE_URL}${VERSION}/video/get`,
-  BRAND_LOGO: `${BASE_URL}${VERSION}/brand/all`,
+  BRAND_LOGO: `${BASE_URL}${VERSION}/brand/all?limit=100`,
   EXTERNAL_FETCH: `${EXTERNAL_URL}/fetch-all`,
   EXTERNAL_DOWNLOAD: `${EXTERNAL_URL}/download`,
   SEND_OTP: `${BASE_URL}${VERSION}/customerData/send-otp`,

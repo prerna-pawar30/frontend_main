@@ -19,24 +19,25 @@ export default function Banner() {
 
   /* ================= FETCH BANNERS ================= */
   useEffect(() => {
-    const fetchBanners = async () => {
-      try {
-        // 2. Use the service method instead of axios.get(BannerUrl)
-        const res = await apiService.getBanners();
-        
-        const activeBanners =
-          res.data?.data
-            ?.filter(b => b.isActive)
-            ?.sort((a, b) => a.displayOrder - b.displayOrder) || [];
+   const fetchBanners = async () => {
+  try {
+    const res = await apiService.getBanners();
+    
+    // Access the specific banners array before filtering
+    const bannerList = res.data?.data?.banners || [];
 
-        setBanners(activeBanners);
-      } catch (err) {
-        console.error("Failed to fetch banners:", err);
-        setBanners([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const activeBanners = bannerList
+      .filter(b => b.isActive)
+      .sort((a, b) => a.displayOrder - b.displayOrder);
+
+    setBanners(activeBanners);
+  } catch (err) {
+    console.error("Failed to fetch banners:", err);
+    setBanners([]);
+  } finally {
+    setLoading(false);
+  }
+};
     fetchBanners();
   }, []);
 

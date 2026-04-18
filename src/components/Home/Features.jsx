@@ -59,7 +59,7 @@ const FeaturesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               /* Added 'smooth-card' for the CSS hover effect we defined earlier */
-              className="smooth-card p-8 flex border border-orange-200 rounded-[2rem] flex-col items-start bg-white min-h-[420px]"
+              className="smooth-card p-8 flex border-2 border-orange-200 rounded-[2rem] flex-col items-start bg-white min-h-[420px]"
             >
               {/* Icon Area */}
               <div className="h-48 w-full flex items-center justify-center mb-6">

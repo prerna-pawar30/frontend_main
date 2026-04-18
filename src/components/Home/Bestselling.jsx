@@ -103,7 +103,7 @@ export default function Bestselling() {
             {bestSellingData.data.map((b, i) => (
               <SwiperSlide key={b.productId || i} className="h-auto">
                 <div
-                  className="category-card rounded-[25px] border border-gray-200 bg-white p-6 flex flex-col h-[350px] transition-all duration-300 hover:shadow-md"
+                  className="category-card rounded-[25px] border-2 border-gray-200 bg-white p-6 flex flex-col h-[350px] transition-all duration-300 hover:shadow-md"
                   data-aos="fade-up"
                   data-aos-delay={i * 100}
                 >
