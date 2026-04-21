@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Briefcase, MapPin, Users, CircleDollarSign } from 'lucide-react';
+import { Briefcase, MapPin, ArrowRight } from 'lucide-react';
 
-const JobCard = ({ job, index, applicationId, onViewDetails }) => {
+const JobCard = ({ job, index, applicationId }) => {
   const navigate = useNavigate();
 
   const handleApplyClick = () => {
@@ -15,85 +15,90 @@ const JobCard = ({ job, index, applicationId, onViewDetails }) => {
 
   return (
     <div
-      className="group flex flex-col overflow-hidden rounded-xl border border-orange-200 bg-white transition-shadow duration-300 hover:shadow-md"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-orange-100 bg-white transition-all duration-300 hover:shadow-xl hover:shadow-orange-100/30"
       style={{
         opacity: 0,
         animation: `cardIn 0.55s ease-out ${index * 100}ms both`,
+        maxWidth: '400px', // Slightly wider for better text flow
       }}
     >
-      <style>{`@keyframes cardIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <style>{`@keyframes cardIn { from { opacity:0; transform:translateY(15px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
-      {/* Image-style top bar — orange accent bottom border like BlogList cards */}
-      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-5 pt-5 pb-4 overflow-hidden">
-        {/* Decorative circles */}
+      {/* Hero Header - Balanced Size */}
+      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-6 py-5 overflow-hidden">
         <div className="pointer-events-none absolute -right-4 -top-4 h-16 w-16 rounded-full border-[10px] border-[#E68736] opacity-10" />
-
-        {/* Employment type + featured badge */}
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#E68736]">
-            {job.employmentType?.replace('_', ' ')}
-          </span>
-          {job.isFeatured && (
-            <span className="rounded bg-[#E68736] px-2 py-0.5 text-[8px] font-black uppercase tracking-tight text-white">
-              Featured
+        
+        <div className="relative z-10">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-[11px] font-black uppercase tracking-widest text-[#E68736] bg-[#E68736]/15 px-2.5 py-1 rounded">
+              {job.employmentType?.replace('_', ' ')}
             </span>
-          )}
-          {applicationId && (
-            <span className="rounded bg-white/10 px-2 py-0.5 text-[8px] font-black uppercase tracking-tight text-white">
-              Applied
+            <div className="flex gap-2">
+               {job.isFeatured && (
+                <span className="rounded-full bg-[#E68736] px-2.5 py-1 text-[10px] font-black uppercase tracking-tight text-white shadow-md">
+                  Featured
+                </span>
+              )}
+              {applicationId && (
+                <span className="rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-black uppercase tracking-tight text-white">
+                  Applied
+                </span>
+              )}
+            </div>
+          </div>
+
+          <h3 className="text-xl font-black leading-tight text-white transition-colors duration-300 group-hover:text-[#E68736]">
+            {job.title}
+          </h3>
+
+          <div className="mt-3 flex flex-wrap gap-4 text-[13px] font-semibold text-gray-400">
+            <span className="flex items-center gap-1.5">
+              <Briefcase size={14} className="text-[#E68736]" />
+              {job.department}
             </span>
-          )}
-        </div>
-
-        <h3 className="text-base font-extrabold leading-snug text-white transition-colors duration-300 group-hover:text-[#E68736]">
-          {job.title}
-        </h3>
-
-        <div className="mt-2 flex flex-wrap gap-3 text-[10px] text-gray-400">
-          <span className="flex items-center gap-1">
-            <Briefcase size={10} className="text-[#E68736]" />
-            {job.department}
-          </span>
-          <span className="flex items-center gap-1">
-            <MapPin size={10} className="text-[#E68736]" />
-            {job.location}
-          </span>
+            <span className="flex items-center gap-1.5">
+              <MapPin size={14} className="text-[#E68736]" />
+              {job.location}
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Body */}
-      <div className="flex flex-1 flex-col p-4">
-
-        {/* Meta grid */}
-        <div className="mb-3 grid grid-cols-2 gap-2">
-          <MetaTile label="Experience" value={`${job.minExperienceYears}–${job.maxExperienceYears} yrs`} />
+      {/* Card Content - Better Breathing Room */}
+      <div className="flex flex-1 flex-col p-6">
+        
+        {/* Quick Stats Grid - Readable Tiles */}
+        <div className="mb-5 grid grid-cols-2 gap-3">
+          <MetaTile label="Experience" value={`${job.minExperienceYears}–${job.maxExperienceYears} Yr`} />
           <MetaTile label="Level" value={job.experienceLevel} />
           <MetaTile
             label="Vacancies"
-            value={`${job.openings} Opening${job.openings > 1 ? 's' : ''}`}
+            value={`${job.openings} Post${job.openings > 1 ? 's' : ''}`}
           />
-          {job.salary?.isVisible && (
+          {job.salary?.isVisible ? (
             <MetaTile
-              label="Salary"
-              value={`₹${formatSalary(job.salary.min)}–${formatSalary(job.salary.max)} PA`}
+              label="Salary (PA)"
+              value={`₹${formatSalary(job.salary.min)}–${formatSalary(job.salary.max)}`}
             />
+          ) : (
+            <MetaTile label="Salary" value="Competitive" />
           )}
         </div>
 
-        {/* Short description */}
+        {/* Description - Readable Body Text */}
         {job.shortDescription && (
-          <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-gray-500">
+          <p className="mb-5 line-clamp-2 text-[14px] font-medium leading-relaxed text-gray-600">
             {job.shortDescription}
           </p>
         )}
 
-        {/* Skills */}
+        {/* Skills - Standard Sized Tags */}
         {job.skills?.length > 0 && (
-          <div className="mb-4 flex flex-wrap gap-1">
+          <div className="mb-6 flex flex-wrap gap-2">
             {job.skills.map((skill) => (
               <span
                 key={skill}
-                className="rounded border border-orange-100 px-2 py-0.5 text-[10px] font-medium text-gray-500 transition-all duration-150 hover:border-[#E68736] hover:text-[#E68736]"
+                className="rounded-lg bg-slate-50 border border-orange-100 px-3 py-1.5 text-[12px] font-bold text-slate-600 hover:border-[#E68736] hover:text-[#E68736] hover:bg-orange-50 transition-all cursor-default"
               >
                 {skill}
               </span>
@@ -101,14 +106,14 @@ const JobCard = ({ job, index, applicationId, onViewDetails }) => {
           </div>
         )}
 
-        {/* CTA */}
-        <div className="mt-auto border-t border-dashed border-orange-100 pt-3">
+        {/* Action Button - High Visibility */}
+        <div className="mt-auto pt-4 border-t border-slate-100">
           <button
             onClick={handleApplyClick}
-            className="group/btn inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#E68736] py-2.5 text-[9px] font-black uppercase tracking-widest text-white bg-[#E68736] transition-all duration-200 hover:bg-white hover:text-[#E68736] active:scale-[0.98]"
+            className="group/btn flex w-full items-center justify-center gap-2 rounded-xl bg-[#E68736] py-3.5 text-[13px] font-black uppercase tracking-[0.1em] text-white transition-all duration-300 hover:bg-slate-900 active:scale-[0.98] shadow-lg shadow-orange-200/50 hover:shadow-slate-200"
           >
             <span>View Details & Apply</span>
-            
+            <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
           </button>
         </div>
       </div>
@@ -116,11 +121,11 @@ const JobCard = ({ job, index, applicationId, onViewDetails }) => {
   );
 };
 
-/* 2-column meta tile */
+/* Reusable Meta Component - Balanced Hierarchy */
 const MetaTile = ({ label, value }) => (
-  <div className="rounded-lg bg-[#fdf5ec] px-3 py-2">
-    <p className="text-[8px] font-bold uppercase tracking-widest text-gray-400">{label}</p>
-    <p className="mt-0.5 text-xs font-extrabold text-[#E68736] leading-tight">{value}</p>
+  <div className="rounded-xl bg-[#FFF9F2] px-3 py-2.5 border border-orange-100/30">
+    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{label}</p>
+    <p className="text-[14px] font-black text-slate-800 leading-tight">{value}</p>
   </div>
 );
 

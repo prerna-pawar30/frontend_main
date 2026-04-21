@@ -108,19 +108,19 @@ const JobDetailsPage = () => {
             <div className="rounded-lg border border-white/10 p-1.5 transition-colors hover:border-[#E68736]">
               <ArrowLeft size={15} className="text-gray-400" />
             </div>
-            <span className="text-[10px] font-bold uppercase tracking-widest">Back to Careers</span>
+            <span className="text-[12px] font-bold uppercase tracking-widest">Back to Careers</span>
           </button>
 
-          <p className="mb-2 text-[15px] font-bold uppercase tracking-[0.3em] text-[#E68736]">
+          <p className="mb-2 text-[26px] font-bold uppercase  text-[#E68736]">
             Career Opportunity
           </p>
 
           {/* Badges */}
           <div className="mb-4 flex flex-wrap gap-2">
-            <span className="rounded-full bg-[#E68736] px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-white">
+            <span className="rounded-full bg-[#E68736] px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-white">
               {job.employmentType?.replace('_', ' ')}
             </span>
-            <span className="rounded-full border border-white/20 px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-white">
+            <span className="rounded-full border border-white/20 px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-white">
               {job.experienceLevel} Level
             </span>
           </div>
@@ -128,8 +128,8 @@ const JobDetailsPage = () => {
           {/* Title + stats two-col */}
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
             <div className="flex-1">
-              <h1 className="text-3xl font-black leading-tight text-white lg:text-4xl">{job.title}</h1>
-              <div className="mt-3 flex flex-wrap gap-4 text-xs text-gray-400">
+              <h1 className="text-3xl font-black leading-tight text-white lg:text-5xl">{job.title}</h1>
+              <div className="mt-3 flex flex-wrap gap-4 text-xm text-gray-400">
                 <span className="flex items-center gap-1.5">
                   <Briefcase size={12} className="text-[#E68736]" /> {job.department}
                 </span>
@@ -150,15 +150,15 @@ const JobDetailsPage = () => {
           { val: `${job.openings}`, lbl: 'Openings' },
           { val: `${job.minExperienceYears}–${job.maxExperienceYears}yr`, lbl: 'Experience' },
           {
-            val: job.salary?.isVisible ? `₹${formatSalary(job.salary.min)}` : 'N/A',
+            val: job.salary?.isVisible ? `₹${formatSalary(job.salary.min)} yr` : 'N/A',
             lbl: 'Min Salary',
           },
         ].map((s, i) => (
                 <React.Fragment key={i}>
                   {i > 0 && <div className="h-7 w-px bg-gray-700" />}
                   <div className="text-center">
-                    <p className="text-lg font-extrabold text-[#E68736]">{s.val}</p>
-                    <p className="text-[9px] uppercase tracking-widest text-gray-500">{s.lbl}</p>
+                    <p className="text-[16px] font-extrabold text-[#E68736]">{s.val}</p>
+                    <p className="text-[12px] uppercase font-bold text-gray-500">{s.lbl}</p>
                   </div>
                 </React.Fragment>
               ))}
@@ -177,7 +177,7 @@ const JobDetailsPage = () => {
 
             {/* Role Overview */}
             <ContentSection label="Role Overview">
-              <p className="text-sm leading-relaxed text-gray-500">{job.shortDescription}</p>
+              <p className="text-[18px] leading-relaxed text-gray-400">{job.shortDescription}</p>
             </ContentSection>
 
             {/* Description blocks */}
@@ -190,7 +190,7 @@ const JobDetailsPage = () => {
                         {para.text}
                       </h4>
                     ) : (
-                      <p key={i} className="text-sm leading-relaxed text-gray-500">
+                      <p key={i} className="text-[18px] leading-relaxed text-gray-400">
                         {para.text}
                       </p>
                     )
@@ -214,7 +214,7 @@ const JobDetailsPage = () => {
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-7 ">
                 <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full border-[14px] border-[#E68736] opacity-10" />
 
-                <h4 className="mb-5 text-sm font-extrabold text-white">Job Highlights</h4>
+                <h4 className="mb-5 text-xl font-extrabold text-white">Job Highlights</h4>
 
                 <div className="mb-6 flex flex-col gap-4">
                   <SidebarTile
@@ -254,7 +254,7 @@ const JobDetailsPage = () => {
                   {existingAppId ? 'Update Application ' : 'Apply Now '}
                 </button>
 
-                <p className="mt-4 text-center text-[9px] uppercase tracking-widest text-gray-600">
+                <p className="mt-4 text-center text-[12px] font-bold uppercase  text-gray-500">
                   Digident Recruitment Team
                 </p>
               </div>
@@ -262,10 +262,10 @@ const JobDetailsPage = () => {
               {/* Help card — white with orange border accent */}
               <div className="overflow-hidden rounded-2xl border border-orange-200 bg-white p-6">
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[#fdf5ec]">
-                  <Mail size={16} className="text-[#E68736]" />
+                  <Mail size={20} className="text-[#E68736]" />
                 </div>
-                <h4 className="mb-1 text-sm font-extrabold text-black">Have Questions?</h4>
-                <p className="mb-3 text-xs leading-relaxed text-gray-500">
+                <h4 className="mb-1 text-[16px] font-extrabold text-black">Have Questions?</h4>
+                <p className="mb-3 text-[16px] leading-relaxed text-gray-500">
                   Interested in the role but need more details? Our team is here to help.
                 </p>
                 <a
@@ -299,7 +299,7 @@ const ContentSection = ({ label, children }) => (
   <div className="mb-6">
     <div className="mb-4 flex items-center gap-3">
       <span className="h-[2px] w-5 bg-[#E68736]" />
-      <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#E68736]">{label}</span>
+      <span className="text-[18px] font-bold uppercase tracking-[0.25em] text-[#E68736]">{label}</span>
     </div>
     {children}
   </div>
@@ -309,12 +309,12 @@ const BulletCard = ({ title, data }) => (
   <div className="rounded-xl border border-orange-200 bg-white p-5">
     <div className="mb-4 flex items-center gap-3">
       <span className="h-[2px] w-4 bg-[#E68736]" />
-      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E68736]">{title}</span>
+      <span className="text-[16px] font-bold  tracking-[0.2em] text-[#E68736]">{title}</span>
     </div>
     {data?.length ? (
       <ul className="flex flex-col gap-2.5">
         {data.map((item, i) => (
-          <li key={i} className="flex gap-3 text-xs leading-relaxed text-gray-600">
+          <li key={i} className="flex gap-3 text-[16px] leading-relaxed text-gray-600">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full border-2 border-[#E68736]" />
             {item}
           </li>
@@ -332,8 +332,8 @@ const SidebarTile = ({ icon, label, value }) => (
       {icon}
     </div>
     <div>
-      <p className="text-[9px] font-bold uppercase tracking-widest text-gray-500">{label}</p>
-      <p className="text-sm font-bold text-white">{value}</p>
+      <p className="text-[16px] font-bold text-gray-400">{label}</p>
+      <p className="text-[15px] font-bold text-white">{value}</p>
     </div>
   </div>
 );

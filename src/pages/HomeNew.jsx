@@ -7,6 +7,9 @@ import Testimonials from "../components/Home/testimonial.jsx";
 import Support from "../components/Home/support.jsx";
 import DigidentAbout from "../components/Home/About.jsx";
 import FeaturesSection from "../components/Home/Features.jsx";
+import { Link } from 'react-router-dom';
+import BlogSection from '../components/blogs/homepage-blog/Blog.jsx'; 
+
 
 // Import Background Assets
 import bgPattern2 from "../assets/home/background1.webp";
@@ -70,7 +73,35 @@ export default function HomeNew() {
         <img src={bgPattern4} className="bg-pattern bg-top-left" alt="" />
         <VideoGallery />
       </div>
-      
+       
+     <section className="py-15 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          
+          <div className="mb-12 flex flex-col items-end justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-[#E68736]">
+                Our Journal
+              </p>
+              <h2 className="text-3xl font-black text-slate-900 md:text-4xl">
+                Latest <span className="text-[#E68736]">Insights</span>
+              </h2>
+            </div>
+            
+            <Link 
+              to="/blog" 
+              className="group inline-flex items-center gap-2 font-bold text-slate-900 hover:text-[#E68736] transition-colors"
+            >
+              View All Articles
+             
+            </Link>
+          </div>
+
+          {/* This is your new component! */}
+          <BlogSection limit={3} />
+
+        </div>
+      </section>
+
     </div>
   );
 }

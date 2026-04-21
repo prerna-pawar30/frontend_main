@@ -1,7 +1,6 @@
 import { lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-
 const Home = lazy(() => import('../pages/HomeNew.jsx'))
 const About = lazy(() => import('../pages/About.jsx'))
 const Contact = lazy(() => import('../pages/Contact.jsx'))
@@ -32,6 +31,8 @@ const JobDetailsPage = lazy(() => import('../components/career/JobDetailsModal.j
 const JobApplicationModalWrapper = lazy(() => import('../components/career/JobApplicationModalWrapper.jsx'))
 const BlogList = lazy(() => import('../components/blogs/BlogList.jsx'))
 const BlogDetail = lazy(() => import('../components/blogs/BlogDetail.jsx'))
+const BlogSection = lazy(() => import('../components/blogs/homepage-blog/Blog.jsx'))
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -64,6 +65,7 @@ const AppRoutes = () => {
       <Route path="/career/application/:applicationId" element={<JobApplicationModalWrapper />} />
       <Route path="/blog" element={<BlogList />} />
       <Route path="/blog/:id" element={<BlogDetail />} />
+      <Route path="/blog-list" element={<BlogSection />} />
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
