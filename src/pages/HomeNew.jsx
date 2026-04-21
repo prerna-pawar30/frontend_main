@@ -97,7 +97,7 @@ export default function HomeNew() {
           </div>
 
           {/* This is your new component! */}
-          <BlogSection limit={3} />
+          <BlogSection limit={4} />
 
         </div>
       </section>
