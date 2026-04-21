@@ -94,8 +94,11 @@ const apiService = {
     return await axios.get(API_ROUTES.GET_APPLICATION_DETAILS(id));
   },
 
-  getBlogs: async () => {
-    return await axios.get(API_ROUTES.GET_BLOGS);
+  // ApiService.js
+  getBlogs: async (status = 'published') => {
+    return await axios.get(API_ROUTES.GET_BLOGS, {
+      params: { status } 
+    });
   },
 
   getBlogDetails: async (id) => {
