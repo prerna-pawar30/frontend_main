@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import contactImg from "../assets/contact/Contact us-png.png";
 import Swal from "sweetalert2";
 import apiService from "../api/ApiService";
-import FormField from "../components/ui/FormField"; 
+import FormField from "../components/ui/FormField";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -26,7 +26,7 @@ export default function Contact() {
 
     if (!form.firstName.trim()) newErrors.firstName = "First name is required";
     if (!form.lastName.trim()) newErrors.lastName = "Last name is required";
-    
+
     if (!form.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
@@ -83,9 +83,9 @@ export default function Contact() {
   };
 
   return (
-    <div className="py-6 bg-white">
+    <div className="py-16 bg-white">
       {/* Heading */}
-      <div className="text-center px-6 py-10">
+      <div className="text-center px-6 ">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-[#072434]">
           Contact Us
         </h2>
@@ -95,7 +95,7 @@ export default function Contact() {
       {/* Form + Image */}
       <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-12">
         <div className="animate-fade-up animation-delay-400">
-          <h3 className="text-[30px] font-bold text-[#011632] mb-3">Get In Touch</h3>
+          <h3 className="text-[30px] font-bold text-[#011632]">Get In Touch</h3>
 
           <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <FormField
@@ -103,7 +103,6 @@ export default function Contact() {
               name="firstName"
               value={form.firstName}
               onChange={handleChange}
-              placeholder="First Name"
               error={errors.firstName}
             />
 
@@ -112,7 +111,6 @@ export default function Contact() {
               name="lastName"
               value={form.lastName}
               onChange={handleChange}
-              placeholder="Last Name"
               error={errors.lastName}
             />
 
@@ -122,7 +120,6 @@ export default function Contact() {
               type="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="Email"
               error={errors.email}
               className="sm:col-span-2"
             />
@@ -133,7 +130,6 @@ export default function Contact() {
               type="tel"
               value={form.phone}
               onChange={handleChange}
-              placeholder="Phone"
               error={errors.phone}
               className="sm:col-span-2"
             />
@@ -143,7 +139,6 @@ export default function Contact() {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Your message..."
               error={errors.message}
               isTextArea={true}
               className="sm:col-span-2"
@@ -152,7 +147,8 @@ export default function Contact() {
             <div className="sm:col-span-2">
               <button
                 type="submit"
-                className="w-full sm:w-auto bg-[#E68736] hover:bg-[#cf6f25] text-white font-semibold py-3 px-10 rounded-lg text-[18px] transition-colors duration-300" 
+                className="w-full sm:w-auto  text-white font-semibold py-3 px-10 rounded-lg text-[18px] transition-colors duration-300"
+                style={{ background: 'linear-gradient(160deg, #fbd3bc, #f6811b 100%)' }}
               >
                 Send Message
               </button>
@@ -166,7 +162,7 @@ export default function Contact() {
       </div>
 
       {/* Info Cards */}
-      <div className="w-full  justify-center mt-16 px-12">
+      <div className="w-full justify-center mt-16 px-12">
         <div className="relative p-[2px] rounded-2xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#E68736] via-[#f7c7a1] to-[#E68736] animate-corner-flow"></div>
           <div className="relative bg-white rounded-2xl p-10 w-full border border-gray-200">

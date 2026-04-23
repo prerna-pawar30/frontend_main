@@ -7,15 +7,12 @@ import Testimonials from "../components/Home/testimonial.jsx";
 import Support from "../components/Home/support.jsx";
 import DigidentAbout from "../components/Home/About.jsx";
 import FeaturesSection from "../components/Home/Features.jsx";
-import { Link } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
 import BlogSection from '../components/blogs/homepage-blog/Blog.jsx'; 
+import { FiArrowRight } from "react-icons/fi";
 
 
-// Import Background Assets
-import bgPattern2 from "../assets/home/background1.webp";
-import bgPattern3 from "../assets/home/background2.webp";
-import bgPattern4 from "../assets/home/background3.webp";
-import bgPattern5 from "../assets/home/background4.webp";
+
 
 export default function HomeNew() {
   return (
@@ -23,31 +20,26 @@ export default function HomeNew() {
       
       {/* Hero: Pattern 5 Top Right */}
       <div className="responsive-container relative">
-        <img src={bgPattern5} className="bg-pattern bg-top-right" alt="" />
         <Hero />
       </div>
 
       {/* About: Pattern 2 Bottom Left */}
       <div className="responsive-container relative">
-        <img src={bgPattern2} className="bg-pattern bg-bottom-left" alt="" />
         <DigidentAbout />
       </div>
 
       {/* Features: Pattern 3 Top Left */}
       <div className="responsive-container relative">
-        <img src={bgPattern3} className="bg-pattern bg-top-left rotate-180" alt="" />
         <FeaturesSection />
       </div>
 
       {/* Brands: Pattern 4 Bottom Right */}
       <div className="responsive-container relative">
-        <img src={bgPattern4} className="bg-pattern bg-bottom-right" alt="" />
         <Brands />
       </div>
 
       {/* Categories: Pattern 5 Center-ish (shifted left) */}
       <div className="responsive-container relative">
-        <img src={bgPattern5} className="bg-pattern bg-bottom-left opacity-10" alt="" />
         <Category />
       </div>
 
@@ -58,19 +50,16 @@ export default function HomeNew() {
 
       {/* Bestselling: Pattern 2 Top Right */}
       <div className="responsive-container relative">
-        <img src={bgPattern2} className="bg-pattern bg-top-right flip-x" alt="" />
         <Bestselling />
       </div>
 
       {/* Testimonials: Pattern 3 Bottom Left */}
       <div className="responsive-container relative">
-        <img src={bgPattern3} className="bg-pattern bg-bottom-left" alt="" />
         <Testimonials />
       </div>
 
       {/* Video Gallery: Pattern 4 Top Left */}
       <div className="responsive-container relative">
-        <img src={bgPattern4} className="bg-pattern bg-top-left" alt="" />
         <VideoGallery />
       </div>
        
@@ -91,8 +80,9 @@ export default function HomeNew() {
               to="/blog" 
               className="group inline-flex items-center gap-2 font-bold text-slate-900 hover:text-[#E68736] transition-colors"
             >
-              View All Articles
              
+              View All Articles
+              <FiArrowRight size={24} /> 
             </Link>
           </div>
 

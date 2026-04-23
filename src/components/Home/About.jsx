@@ -2,7 +2,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import manufacturingImg from '../../assets/home/about1.jpeg'; 
- import bgGraphic from '../../assets/home/background1.webp'; 
 import "../../pages/HomeNew.css"; // Ensure your CSS is imported
 
 const DigidentAbout = () => {
@@ -17,11 +16,7 @@ const DigidentAbout = () => {
         viewport={{ once: true }}
         className="absolute bottom-0 left-0 w-64 h-64 -z-10 pointer-events-none"
       >
-        <img 
-          src={bgGraphic} 
-          alt="" 
-          className="w-full h-full object-contain object-bottom-left" 
-        />
+        
       </motion.div>
       <div className="responsive-container relative z-10">
         

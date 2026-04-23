@@ -2,8 +2,8 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import logoDefault from "../../assets/home/digident1.webp";   
-import logoScrolled from "../../assets/home/digident.webp"; 
+import logoDefault from "../../assets/home/digident1.webp";
+import logoScrolled from "../../assets/home/digident.webp";
 
 import {
   HiX,
@@ -15,7 +15,6 @@ import {
   HiShoppingCart,
 } from "react-icons/hi";
 
-// Use the URL from your .env file
 const SHOP_URL = import.meta.env.VITE_SHOP_URL;
 
 const MENU = [
@@ -35,7 +34,6 @@ export default function Header() {
   const [shrink, setShrink] = useState(false);
   const drawerRef = useRef(null);
 
-  // Handle Scroll logic for header height and background
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -47,7 +45,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close drawer on Escape or Outside Click
   useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") setIsOpen(false); };
     const handleClickOutside = (e) => {
@@ -63,31 +60,42 @@ export default function Header() {
     };
   }, [isOpen]);
 
-  // --- Center Expansion Animation Styles ---
   const desktopNavStyles = `
     relative text-[16px] xl:text-[18px] font-medium tracking-wide 
-    transition-all duration-300 py-1 text-[#011632] hover:text-[#E68736]
-    
+    transition-all duration-300 py-1 text-[#011632] hover:text-white
     after:content-[''] after:absolute after:bottom-0 after:left-1/2 
-    after:h-[2px] after:w-0 after:bg-[#E68736] 
+    after:h-[2px] after:w-0 after:bg-white
     after:transition-all after:duration-300 after:-translate-x-1/2
     hover:after:w-full
   `;
 
   return (
     <>
-      {/* Header Container */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-md flex items-center
-          ${isScrolled ? "backdrop-blur-sm bg-[#F7E6DC]/70" : "bg-[#F7E6DC]"}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 shadow-md flex items-center
           ${shrink ? "h-[65px]" : "h-[85px]"}
         `}
+        style={{
+          background: isScrolled
+            ? 'linear-gradient(160deg, rgba(247,230,220,0.85), rgba(230,135,54,0.85) 100%)'
+            : 'linear-gradient(160deg, #F7E6DC, #E68736 100%)',
+          backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+          WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'none',
+        }}
       >
-        <div className="w-full max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between">
-          
-          {/* Logo Section */}
-          <Link 
-            to="/" 
+        {/* Subtle shimmer overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(105deg, rgba(255,255,255,0.12) 0%, transparent 60%)',
+          }}
+        />
+
+        <div className="w-full max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between relative z-10">
+
+          {/* Logo */}
+          <Link
+            to="/"
             onClick={() => setIsOpen(false)}
             className="flex-shrink-0 transition-all duration-500 z-50"
             style={{ transform: isScrolled ? "translateX(-10px)" : "translateX(0px)" }}
@@ -100,7 +108,7 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation - Hidden on Mobile/Tablet */}
+          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-10">
             {MENU.map(({ to, label, isExternal }) => (
               isExternal ? (
@@ -113,7 +121,7 @@ export default function Header() {
                   to={to}
                   end={to === "/"}
                   className={({ isActive }) =>
-                    `${desktopNavStyles} ${isActive ? "text-[#E68736] after:w-full" : ""}`
+                    `${desktopNavStyles} ${isActive ? "text-white after:w-full" : ""}`
                   }
                 >
                   {label}
@@ -122,45 +130,54 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Mobile Hamburger Menu Toggle */}
+          {/* Mobile Hamburger */}
           <button
             aria-label={isOpen ? "Close menu" : "Open menu"}
             onClick={() => setIsOpen((s) => !s)}
             className="lg:hidden relative w-10 h-10 flex items-center justify-center z-50"
           >
-            <span className={`block absolute w-6 h-[2.5px] bg-[#E68736] transition-transform duration-300 ${isOpen ? "rotate-45 translate-y-0" : "-translate-y-2"}`} />
-            <span className={`block absolute w-6 h-[2.5px] bg-[#E68736] transition-all duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`} />
-            <span className={`block absolute w-6 h-[2.5px] bg-[#E68736] transition-transform duration-300 ${isOpen ? "-rotate-45 translate-y-0" : "translate-y-2"}`} />
+            <span className={`block absolute w-6 h-[2.5px] bg-white transition-transform duration-300 ${isOpen ? "rotate-45 translate-y-0" : "-translate-y-2"}`} />
+            <span className={`block absolute w-6 h-[2.5px] bg-white transition-all duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`} />
+            <span className={`block absolute w-6 h-[2.5px] bg-white transition-transform duration-300 ${isOpen ? "-rotate-45 translate-y-0" : "translate-y-2"}`} />
           </button>
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Overlay */}
       <div
         className={`fixed inset-0 z-[60] transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         onClick={() => setIsOpen(false)}
         style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
       />
 
-      {/* Mobile Right-Side Drawer */}
+      {/* Mobile Drawer */}
       <aside
         ref={drawerRef}
         className={`fixed top-0 right-0 z-[70] h-full w-[280px] sm:w-[320px] md:w-[360px]
-          bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
+          shadow-2xl transform transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
+        style={{ background: 'linear-gradient(160deg, #F7E6DC 0%, #E68736 100%)' }}
       >
-        <div className="h-full p-6 flex flex-col">
+        {/* Shimmer overlay inside drawer */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(120deg, rgba(255,255,255,0.18) 0%, transparent 55%)',
+          }}
+        />
+
+        <div className="h-full p-6 flex flex-col relative z-10">
           <div className="flex items-center justify-between mb-8">
             <img src={logoDefault} alt="Logo" className="h-16 object-contain" />
             <button onClick={() => setIsOpen(false)} className="p-2">
-              <HiX className="text-3xl text-[#E68736]" />
+              <HiX className="text-3xl text-white" />
             </button>
           </div>
-          
-          <div className="h-px bg-gray-100 mb-6" />
 
-          {/* Drawer Navigation Links */}
+          <div className="h-px mb-6" style={{ background: 'rgba(255,255,255,0.3)' }} />
+
+          {/* Drawer Nav */}
           <nav className="flex-grow overflow-y-auto">
             <ul className="flex flex-col gap-1">
               {MENU.map((item) => (
@@ -168,9 +185,9 @@ export default function Header() {
                   {item.isExternal ? (
                     <a
                       href={item.to}
-                      className="flex items-center gap-4 py-4 px-4 rounded-xl text-lg text-[#072434] hover:bg-[#F7E6DC]/30 active:bg-[#F7E6DC]/50 transition-colors"
+                      className="flex items-center gap-4 py-4 px-4 rounded-xl text-lg text-[#011632] font-medium transition-colors hover:bg-white/20"
                     >
-                      <span className="text-xl text-[#E68736]">{item.icon}</span>
+                      <span className="text-xl text-white">{item.icon}</span>
                       {item.label}
                     </a>
                   ) : (
@@ -179,14 +196,14 @@ export default function Header() {
                       end={item.to === "/"}
                       onClick={() => setIsOpen(false)}
                       className={({ isActive }) =>
-                        `flex items-center gap-4 py-4 px-4 rounded-xl text-lg transition-colors ${
+                        `flex items-center gap-4 py-4 px-4 rounded-xl text-lg font-medium transition-colors ${
                           isActive
-                            ? "bg-[#E68736]/10 text-[#E68736] font-semibold"
-                            : "text-[#072434] hover:bg-[#F7E6DC]/30"
+                            ? "bg-white/25 text-white font-semibold"
+                            : "text-[#011632] hover:bg-white/20"
                         }`
                       }
                     >
-                      <span className="text-xl">{item.icon}</span>
+                      <span className="text-xl text-white">{item.icon}</span>
                       {item.label}
                     </NavLink>
                   )}
@@ -195,12 +212,17 @@ export default function Header() {
             </ul>
           </nav>
 
-          {/* CTA Section in Drawer */}
+          {/* CTA */}
           <div className="pt-6">
             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className="w-full flex items-center justify-center gap-2 bg-[#E68736] text-white py-4 rounded-2xl font-bold shadow-lg shadow-[#E68736]/20 active:scale-[0.98] transition-transform"
+              className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold transition-transform active:scale-[0.98]"
+              style={{
+                background: 'rgba(255,255,255,0.9)',
+                color: '#E68736',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+              }}
             >
               <HiShoppingCart className="text-xl" /> Contact / Enquiry
             </Link>

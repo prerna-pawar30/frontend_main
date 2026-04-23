@@ -137,7 +137,8 @@ export default function Category() {
                       href={`${SHOP_BASE_URL}/all-products?category=${cat._id}`}
                       style={{ cursor: "pointer" }}
                       onClick={(e) => e.stopPropagation()}
-                      className="mt-8 w-full flex items-center justify-center gap-2 bg-[#E68736] hover:bg-white hover:text-[#E68736] border border-orange-200 text-white py-2 rounded-xl text-[17px] font-bold transition-all active:scale-95"
+                      className="mt-8 w-full flex items-center justify-center gap-2  hover:text-white border border-orange-200 text-white py-2 rounded-xl text-[17px] font-bold transition-all active:scale-95"
+                      style={{ background: 'linear-gradient(160deg, #f8c1a1, #eb730b 100%)' }}
                     >
                       <FiShoppingCart size={20} />
                       Shop Now

@@ -3,7 +3,7 @@
 ------------------------------------------- */
 .responsive-container {
   width: 100%;
-  max-width: 1540px; /* Optional: sets a comfortable max width for ultra-wide screens */
+  max-width: 1600px; /* Optional: sets a comfortable max width for ultra-wide screens */
   margin-left: auto;
   margin-right: auto;
   padding-left: 16px;  /* Mobile horizontal padding */
@@ -277,5 +277,6 @@ button[id*="-next"]:hover {
   opacity: 2;
   transform: translateY(0);
 }
+
 
 

@@ -160,7 +160,8 @@ export default function Bestselling() {
         <div className="mt-12">
           <a
             href={`${SHOP_BASE_URL}/hot-selling`}
-            className="inline-block bg-[#f3d3b6] hover:bg-[#E68736] text-[#E68736] hover:text-white py-4 px-12 rounded-xl font-bold text-xl transition-all duration-300"
+            className="inline-block  text-white hover:text-white py-4 px-12 rounded-xl font-bold text-xl transition-all duration-300"
+             style={{ background: 'linear-gradient(160deg, #fbd3bc, #f6811b 100%)' }}
           >
             View More
           </a>
