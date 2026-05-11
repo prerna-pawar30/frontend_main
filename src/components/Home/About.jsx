@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import manufacturingImg from '../../assets/home/about1.jpeg'; 
-import "../../pages/HomeNew.css"; // Ensure your CSS is imported
+import "../../pages/HomeNew.css"; 
 
 const DigidentAbout = () => {
   return (
