@@ -54,7 +54,6 @@ const BlogList = () => {
   const fetchBlogs = async () => {
     try {
       const response = await apiService.getBlogs();
-      // Ensure we target the correct path in your JSON structure
       const dataToSet = response.data?.data?.blogs || response.data?.blogs || [];
       setBlogs(dataToSet);
     } catch (error) {
@@ -75,27 +74,26 @@ const BlogList = () => {
     <div className="min-h-screen bg-white px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
 
-        {/* ── Hero Header (Original UI Restored) ── */}
+        {/* ── Hero Header ── */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative mb-10 overflow-hidden rounded-2xl p-6 md:p-12 px-8 py-10  border border-orange-200"
-          style={{ background: 'linear-gradient(145deg, #ffffff 0%, #E68736 100%)' }}
+          className="relative mb-10 overflow-hidden rounded-2xl px-8 py-10 md:p-12 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
         >
           {/* Decorative shapes */}
-          <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full border-[22px] border-white opacity-10" />
-          <div className="pointer-events-none absolute bottom-[-20px] left-[44%] h-24 w-24 rounded-full bg-white opacity-[0.08]" />
+          <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full border-[22px] border-[#E68736] opacity-20" />
+          <div className="pointer-events-none absolute bottom-[-20px] left-[44%] h-24 w-24 rounded-full bg-[#E68736] opacity-[0.10]" />
 
-          <p className="mb-2 text-[14px] font-bold uppercase tracking-[0.1em] text-slate-900">
+          <p className="mb-2 text-[14px] font-bold uppercase tracking-[0.1em] text-slate-400">
             Knowledge Base
           </p>
 
-          <h1 className="text-4xl font-extrabold leading-tight text-slate-900">
+          <h1 className="text-4xl font-extrabold leading-tight text-white">
             Our <span className="text-[#E68736]">Insights</span>
           </h1>
 
-          <p className="mt-2 text-[16px] text-gray-800">
+          <p className="mt-2 text-[16px] text-slate-300">
             Perspectives from our team on design, growth &amp; innovation.
           </p>
 
@@ -105,21 +103,21 @@ const BlogList = () => {
               <p className="text-[20px] font-extrabold text-[#E68736]">
                 {loading ? "..." : blogs.length}
               </p>
-              <p className="text-[12px] uppercase font-bold text-gray-400">Articles</p>
+              <p className="text-[12px] uppercase font-bold text-slate-400">Articles</p>
             </div>
-            <div className="h-8 w-px bg-gray-700" />
+            <div className="h-8 w-px bg-white/20" />
             <div className="text-center">
               <p className="text-[20px] font-extrabold text-[#E68736]">
                 {loading ? "..." : (totalViews >= 1000 ? `${(totalViews / 1000).toFixed(1)}k` : totalViews)}
               </p>
-              <p className="text-[12px] uppercase font-bold text-gray-400">Readers</p>
+              <p className="text-[12px] uppercase font-bold text-slate-400">Readers</p>
             </div>
-            <div className="h-8 w-px bg-gray-700" />
+            <div className="h-8 w-px bg-white/20" />
             <div className="text-center">
               <p className="text-[20px] font-extrabold text-[#E68736]">
                 {new Date().getFullYear()}
               </p>
-              <p className="text-[12px] uppercase font-bold text-gray-400">Season</p>
+              <p className="text-[12px] uppercase font-bold text-slate-400">Season</p>
             </div>
           </div>
         </motion.div>
@@ -136,7 +134,6 @@ const BlogList = () => {
           >
             {blogs.length > 0 ? (
               blogs.map((blog) => {
-                // Handle fallback for image and description from different API field names
                 const blogImg = blog.bannerImage || blog.featuredImage || "https://via.placeholder.com/600x400";
                 const blogDesc = blog.shortDescription || blog.description || "";
 
@@ -163,7 +160,7 @@ const BlogList = () => {
                       <div className="mb-3 flex items-center justify-between">
                         <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-[#E68736]">
                           <span className="h-1.5 w-1.5 rounded-full bg-[#E68736]" />
-                          {blog.stats?.views || 0} Views
+                          {blog.views || 0 } Views
                         </span>
                         <span className="text-[11px] uppercase tracking-widest text-gray-400">
                           {blog.publishedAt 

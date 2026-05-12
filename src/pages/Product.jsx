@@ -109,7 +109,6 @@ export default function Products() {
 
         .p-head { text-align: center; margin-bottom: 36px; }
         .p-head h1 {
-         
           font-size: clamp(30px, 7vw, 28px);
           font-weight: 900; color: #072434;
           text-transform: uppercase; line-height: 1;
@@ -136,23 +135,24 @@ export default function Products() {
         }
         .p-tab:hover:not(.active) { background: rgba(230,135,54,0.08); }
 
-        /* ── Stack: wider ── */
+        /* ── Stack ── */
         .p-stack {
           position: relative;
           width: 100%;
-          max-width: 980px;        /* ← increased from 540px */
+          max-width: 980px;
           margin: 0 auto;
-          height: 580px;           /* ← slightly taller for proportion */
+          height: 580px;
           perspective: 1400px;
         }
 
+        /* ── Dark card: slate-900 → slate-800 → slate-900 ── */
         .p-card {
           position: absolute; inset: 0;
           border-radius: 28px;
-          background: linear-gradient(135deg, #fff9f5 0%, #E68736 100%);
-          box-shadow: 0 24px 64px rgba(230,135,54,0.22), 0 4px 16px rgba(0,0,0,0.08);
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+          box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
           display: flex; flex-direction: column;
-          padding: 26px 30px 18px;  /* ← more generous padding */
+          padding: 26px 30px 18px;
           transition: transform 0.65s cubic-bezier(0.34,1.26,0.64,1),
                       opacity 0.5s ease,
                       box-shadow 0.4s ease;
@@ -164,7 +164,7 @@ export default function Products() {
         .p-card[data-pos="0"] {
           transform: translateZ(0) translateY(0) scale(1);
           z-index: 10; opacity: 1;
-          box-shadow: 0 32px 80px rgba(230,135,54,0.28), 0 8px 24px rgba(0,0,0,0.1);
+          box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 8px 24px rgba(230,135,54,0.15);
         }
         .p-card[data-pos="1"] {
           transform: translateZ(-70px) translateY(20px) scale(0.96);
@@ -187,13 +187,14 @@ export default function Products() {
           pointer-events: none;
         }
 
+        /* Badge — adjusted for dark bg */
         .p-card-badge {
           display: inline-flex; align-items: center; gap: 6px;
-          background: rgba(255,255,255,0.55);
-          border: 1px solid rgba(255,255,255,0.8);
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(230,135,54,0.4);
           border-radius: 20px; padding: 4px 14px;
           font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-          color: #872e00; text-transform: uppercase;
+          color: #E68736; text-transform: uppercase;
           width: fit-content; margin-bottom: 14px;
         }
         .p-badge-dot {
@@ -201,18 +202,21 @@ export default function Products() {
           background: #E68736; display: inline-block;
         }
 
+        /* Title — white on dark */
         .p-card-title {
           font-family: 'Barlow Condensed', sans-serif;
-          font-size: clamp(36px, 5.5vw, 58px); /* ← bigger title */
-          font-weight: 900; color: #072434; line-height: 1;
+          font-size: clamp(36px, 5.5vw, 58px);
+          font-weight: 900; color: #ffffff; line-height: 1;
           text-transform: uppercase; letter-spacing: -0.01em;
           margin-bottom: 12px;
         }
+
+        /* Description — light slate on dark */
         .p-card-desc {
-          font-size: 16px; /* ← slightly larger body text */
-          color: rgba(0, 0, 0, 0.68);
+          font-size: 18px;
+          color: rgba(203, 213, 225, 0.85); /* slate-300 with slight transparency */
           line-height: 1.7;
-          max-width: 620px; /* ← wider text block */
+          max-width: 890px;
         }
 
         .p-card-img {
@@ -220,37 +224,46 @@ export default function Products() {
           margin-top: 16px; position: relative;
         }
         .p-card-img img {
-          max-height: 400px;   /* ← bigger image */
+          max-height: 400px;
           max-width: 440px;
           object-fit: contain;
-          filter: drop-shadow(0 14px 28px rgba(100,40,0,0.25));
+          filter: drop-shadow(0 14px 32px rgba(230,135,54,0.3));
           transition: transform 0.4s ease;
         }
         .p-card[data-pos="0"]:hover .p-card-img img {
           transform: translateY(-8px) scale(1.05);
         }
+
+        /* Large number — slightly brighter on dark */
         .p-card-num {
           position: absolute; bottom: 0; left: 0;
           font-family: 'Barlow Condensed', sans-serif;
           font-size: 110px; font-weight: 900;
-          color: rgba(255, 255, 255, 0.2); line-height: 1;
+          color: rgba(255, 255, 255, 0.06); line-height: 1;
           pointer-events: none; user-select: none;
         }
 
+        /* Footer — border adjusted for dark */
         .p-card-foot {
           display: flex; align-items: center; justify-content: space-between;
           margin-top: auto; padding-top: 18px;
-          border-top: 1px solid rgba(255,255,255,0.4);
+          border-top: 1px solid rgba(255,255,255,0.1);
         }
         .p-view-btn {
-          background: #072434; color: #fff;
+          background: #E68736; color: #fff;
           border: none; border-radius: 10px;
           padding: 10px 24px; font-size: 14px; font-weight: 600;
           cursor: pointer; transition: background 0.2s, transform 0.15s;
           font-family: 'DM Sans', sans-serif;
         }
-        .p-view-btn:hover { background: #E68736; transform: scale(1.03); }
-        .p-card-count { font-size: 13px; color: rgba(7,36,52,0.45); font-weight: 500; }
+        .p-view-btn:hover { background: #f59e3f; transform: scale(1.03); }
+
+        /* Counter — muted slate on dark */
+        .p-card-count {
+          font-size: 13px;
+          color: rgba(148, 163, 184, 0.7); /* slate-400 */
+          font-weight: 500;
+        }
 
         .p-nav {
           display: flex; align-items: center; justify-content: center;

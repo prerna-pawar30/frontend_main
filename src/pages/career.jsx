@@ -9,7 +9,7 @@ import JobApplicationModal from '../components/career/JobApplicationModal';
 const JobSkeleton = () => (
   <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
     {[1, 2, 3].map((i) => (
-      <div key={i} className="h-48 w-full animate-pulse rounded-2xl bg-gray-100" />
+      <div key={i} className="h-48 w-full animate-pulse rounded-2xl bg-slate-100" />
     ))}
   </div>
 );
@@ -38,55 +38,57 @@ const CareerPage = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-white py-14">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* ── HERO SECTION: Renders immediately ── */}
+        {/* ── HERO SECTION: Dark Theme ── */}
         <section
-          className="relative overflow-hidden rounded-2xl px-6 py-14 sm:px-10 lg:px-20 border border-orange-200"
-          style={{ background: 'linear-gradient(135deg, #fff9f5 20%, #E68736 100%)' }}
+          className="relative overflow-hidden rounded-[2rem] px-6 py-16 sm:px-10 lg:px-20 border border-slate-800"
+          style={{ background: 'linear-gradient(135deg, #0f172a 20%, #1e293b 100%)' }}
         >
-          {/* Keyframes moved to a global/higher level or kept here */}
+          {/* Global Animations */}
           <style>{`
-            @keyframes fadeUp { from { opacity:0; transform:translateY(15px); } to { opacity:1; transform:translateY(0); } }
-            @keyframes expandWidth { to { width: 72px; } }
-            .hero-anim { animation: fadeUp 0.6s ease-out both; }
+            @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+            @keyframes expandWidth { to { width: 80px; } }
+            .hero-anim { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
           `}</style>
 
-          {/* decorative circles */}
-          <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full border-[22px] border-white opacity-10" />
-          <div className="pointer-events-none absolute bottom-[-20px] left-[44%] h-24 w-24 rounded-full bg-white opacity-[0.08]" />
+          {/* Decorative Elements */}
+          <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full border-[25px] border-orange-500 opacity-[0.03] blur-sm" />
+          <div className="pointer-events-none absolute bottom-[-30px] left-[40%] h-32 w-32 rounded-full bg-orange-500 opacity-[0.02] blur-xl" />
 
-          <div className="hero-anim">
-           <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-900">We're Hiring</p>
+          <div className="hero-anim relative z-10">
+            <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.4em] text-orange-400">Join Our Team</p>
 
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex-1">
-               <h1 className="text-4xl font-black leading-tight text-slate-900 lg:text-5xl">
-                  Build the future <span className="text-white">with Digident.</span>
+            <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex-1 max-w-2xl">
+                <h1 className="text-xl font-extrabold leading-tight text-white lg:text-4xl tracking-tight">
+                  Build the future <span className="text-orange-400">with Digident.</span>
                 </h1>
 
-                <p className="mt-4 max-w-xl text-sm text-slate-700 leading-relaxed">
+                <p className="mt-6 max-w-xl text-base text-slate-300 leading-relaxed font-medium">
                   We're looking for passionate individuals to help us revolutionize dental
-                  manufacturing through technology.
+                  manufacturing through cutting-edge technology and innovation.
                 </p>
+                
+                {/* Animated underline */}
                 <div
-                  className="mt-6 h-[3px] bg-[#E68736]"
-                  style={{ width: 0, animation: 'expandWidth 0.9s 0.5s ease-out forwards' }}
+                  className="mt-8 h-[4px] bg-orange-500 rounded-full"
+                  style={{ width: 0, animation: 'expandWidth 1s 0.6s ease-out forwards' }}
                 />
               </div>
 
-              {/* Stats: Shows "..." while loading so layout doesn't shift */}
-              <div className="flex items-center gap-6">
+              {/* Stats: Dark Mode Optimized */}
+              <div className="flex items-center gap-8 bg-slate-900/60 p-6 rounded-2xl border border-slate-800 backdrop-blur-sm shadow-xl shadow-slate-950/20">
                 {[
                   { val: loading ? '...' : (jobs.length || 0), lbl: 'Open Roles' },
                   { val: 'Surat', lbl: 'Location' },
-                  { val: '2019', lbl: 'Founded' },
+                  { val: '2016', lbl: 'Founded' },
                 ].map((s, i) => (
                   <React.Fragment key={i}>
-                    {i > 0 && <div className="h-8 w-px bg-orange-200" />}
+                    {i > 0 && <div className="h-10 w-px bg-slate-700" />}
                     <div className="text-center">
-                      <p className="text-xl font-extrabold text-slate-900">{s.val}</p>
-                      <p className="text-[9px] uppercase tracking-widest text-slate-600">{s.lbl}</p>
+                      <p className="text-3xl font-extrabold text-white tracking-tight">{s.val}</p>
+                      <p className="mt-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-400">{s.lbl}</p>
                     </div>
                   </React.Fragment>
                 ))}
@@ -95,25 +97,26 @@ const CareerPage = () => {
           </div>
         </section>
 
-        {/* ── JOB GRID AREA ── */}
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="mb-7 flex items-center gap-3">
-            <span className="h-[2px] w-5 bg-[#E68736]" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#E68736]">
+        {/* ── JOB GRID AREA: Light Theme ── */}
+        <div className="py-16">
+          <div className="mb-10 flex items-center gap-4">
+            <span className="h-[3px] w-6 bg-orange-500 rounded-full" />
+            <h2 className="text-[12px] font-black uppercase tracking-[0.3em] text-orange-500">
               Open Positions
-            </span>
+            </h2>
           </div>
 
           {loading ? (
             <JobSkeleton />
           ) : jobs.length === 0 ? (
-            <div className="rounded-2xl border-2 border-dashed border-orange-100 p-16 text-center">
-              <p className="text-sm font-medium text-gray-400">
+            <div className="rounded-3xl border-2 border-dashed border-slate-100 bg-slate-50/50 p-20 text-center shadow-inner">
+              <p className="text-base font-semibold text-slate-500">
                 No open positions right now. Check back soon!
               </p>
+              <p className="mt-2 text-sm text-slate-400">Or send us your resume at careers@digident.com</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {jobs.map((job, index) => (
                 <JobCard
                   key={job._id || index}
@@ -133,13 +136,15 @@ const CareerPage = () => {
             onClose={() => setSelectedJob(null)}
             onApply={() => setIsApplying(true)}
           />
-        )}
+        )
+}
 
         {selectedJob && isApplying && (
           <JobApplicationModal
             selectedJob={selectedJob}
             onClose={(newAppId) => {
               setIsApplying(false);
+              setSelectedJob(null);
               fetchJobs(); // Refresh list after application
             }}
           />

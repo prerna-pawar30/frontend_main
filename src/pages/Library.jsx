@@ -116,22 +116,19 @@ const Library = () => {
           </div>
         </div>
 
-        <div
-          className="flex flex-col md:flex-row items-center justify-between gap-4 p-5 md:p-6 rounded-2xl border border-orange-200  overflow-hidden relative"
-          style={{ background: 'linear-gradient(135deg,  #E68736 10%, #fff9f5 100%)' }}
-        >
-          <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/20 rounded-full blur-3xl"></div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-5 md:p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl overflow-hidden relative">
+          <div className="absolute -right-10 -top-10 w-32 h-32 bg-[#E68736]/10 rounded-full blur-3xl"></div>
           <div className="relative z-10 flex items-center gap-4">
-            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/30 border border-white/40 flex items-center justify-center text-slate-900">
+            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#E68736]/10 border border-[#E68736]/20 flex items-center justify-center text-[#E68736]">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
             </div>
             <div>
-              <h4 className="text-sm md:text-base font-black text-slate-900 uppercase tracking-tight">
-                Request <span className="text-white">Scanbridge</span> Library
+              <h4 className="text-sm md:text-base font-black text-white uppercase tracking-tight">
+                Request <span className="text-[#E68736]">Scanbridge</span> Library
               </h4>
-              <p className="text-slate-700 text-[11px] md:text-xs font-medium">
+              <p className="text-slate-400 text-[11px] md:text-xs font-medium">
                 Send a request to get a scanbridge library as per your requirement.
               </p>
             </div>
@@ -141,7 +138,7 @@ const Library = () => {
               setActiveDownloadData({ brandName: "Scanbridge Request", type: "request" });
               setShowModal(true);
             }}
-            className="relative z-10 w-full md:w-auto px-8 py-3 bg-white hover:bg-[#E68736] hover:text-white text-[#E68736] text-[10px] md:text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 active:scale-95 "
+            className="relative z-10 w-full md:w-auto px-8 py-3 bg-[#E68736] hover:bg-white hover:text-[#E68736] text-white text-[10px] md:text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 active:scale-95 shadow-lg"
           >
             Send Request
           </button>

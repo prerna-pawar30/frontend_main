@@ -164,12 +164,12 @@ export default function About() {
                 />
               </div>
             </div>
-            <div className="w-full md:w-[65%] p-8 md:p-16 flex flex-col justify-center">
+            <div className="w-full md:w-[65%]  md:p-16 flex flex-col justify-center">
               <h3 className="text-xl sm:text-2xl md:text-4xl font-bold text-[#072434] mb-6 leading-snug">
                 <span className="text-[#E68736]">At DigiDent India,</span>{" "}
                 innovation isn't optional — it's our identity.
               </h3>
-              <div className="space-y-4 text-gray-700 text-sm md:text-base font-medium">
+              <div className="space-y-4 text-gray-600 text-sm md:text-base">
                 <p>
                   Digital manufacturing defines the new gold standard in implant dentistry —
                   delivering precision, repeatability, and speed.

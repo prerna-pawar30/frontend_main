@@ -140,7 +140,7 @@ export default function Category() {
                       /* Merged both style properties into one object below */
                       style={{ 
                         cursor: "pointer", 
-                        background: 'linear-gradient(160deg, #f8c1a1, #eb730b 100%)' 
+                        background: '#E68736', 
                       }}
                     >
                       <FiShoppingCart size={20} />

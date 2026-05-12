@@ -94,19 +94,21 @@ const JobDetailsPage = () => {
         .anim-right { animation: fadeRight 0.65s ease-out both; }
       `}</style>
 
-      {/* ── BLACK HERO ── */}
+      {/* ── DARK GRADIENT HERO ── */}
         <section
-          className="anim-up relative overflow-hidden rounded-2xl px-6 py-10 sm:px-10 lg:px-20"
-          style={{ background: 'linear-gradient(135deg, #fff9f5 20%, #E68736 100%)' }}
+          className="anim-up relative overflow-hidden rounded-2xl px-6 py-10 sm:px-10 lg:px-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white"
         >
-          <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full border-[22px] border-white opacity-10" />
-          <div className="pointer-events-none absolute bottom-[-20px] left-[42%] h-24 w-24 rounded-full bg-white opacity-[0.08]" />
+          {/* Top Right Circle - Changed from border-white to border-orange-500 */}
+<div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full border-[22px] border-orange-400/20 opacity-50 blur-[2px]" />
+
+{/* Bottom Center Circle - Changed from bg-white to bg-orange-500 */}
+<div className="pointer-events-none absolute bottom-[-20px] left-[42%] h-24 w-24 rounded-full bg-orange-400/20 opacity-30 blur-xl" />
 
         <div className="mx-auto max-w-7xl">
           {/* Back button */}
           <button
             onClick={() => navigate('/career')}
-            className="mb-6 flex items-center gap-2 text-gray-500 transition-colors hover:text-[#E68736]"
+            className="mb-6 flex items-center gap-2 text-gray-400 transition-colors hover:text-[#E68736]"
           >
             <div className="rounded-lg border border-white/10 p-1.5 transition-colors hover:border-[#E68736]">
               <ArrowLeft size={15} className="text-gray-400" />
@@ -114,14 +116,14 @@ const JobDetailsPage = () => {
             <span className="text-[12px] font-bold uppercase tracking-widest">Back to Careers</span>
           </button>
 
-            <p className="mb-2 text-[26px] font-bold uppercase text-slate-900">Career Opportunity</p>
+            <p className="mb-2 text-[26px] font-bold uppercase text-white">Career Opportunity</p>
 
           {/* Badges */}
           <div className="mb-4 flex flex-wrap gap-2">
-             <span className="rounded-full bg-white/30 border border-white/40 px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-slate-900">
+             <span className="rounded-full bg-white/10 border border-white/20 px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-white">
                 {job.employmentType?.replace('_', ' ')}
               </span>
-              <span className="rounded-full border border-white/40 px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-slate-900">
+              <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-white">
                 {job.experienceLevel} Level
               </span>
           </div>
@@ -129,10 +131,10 @@ const JobDetailsPage = () => {
           {/* Title + stats two-col */}
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
             <div className="flex-1">
-               <h1 className="text-3xl font-black leading-tight text-slate-900 lg:text-5xl">{job.title}</h1>
-              <div className="mt-3 flex flex-wrap gap-4 text-sm text-slate-700">
-                <span className="flex items-center gap-1.5"><Briefcase size={12} className="text-white" /> {job.department}</span>
-                <span className="flex items-center gap-1.5"><MapPin size={12} className="text-white" /> {job.location} ({job.workplaceType})</span>
+               <h1 className="text-3xl font-black leading-tight text-white lg:text-5xl">{job.title}</h1>
+              <div className="mt-3 flex flex-wrap gap-4 text-sm text-slate-300">
+                <span className="flex items-center gap-1.5"><Briefcase size={12} className="text-[#E68736]" /> {job.department}</span>
+                <span className="flex items-center gap-1.5"><MapPin size={12} className="text-[#E68736]" /> {job.location} ({job.workplaceType})</span>
               </div>
               <div
                 className="mt-5 h-[3px] bg-[#E68736]"
@@ -142,7 +144,7 @@ const JobDetailsPage = () => {
 
             {/* Quick stats */}
            <div className="mt-10 self-end">
-       <div className="flex items-center gap-6 rounded-2xl border border-white/20 bg-white/20 p-6 backdrop-blur-sm">
+       <div className="flex items-center gap-6 rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-sm">
         {[
           { val: `${job.openings}`, lbl: 'Openings' },
           { val: `${job.minExperienceYears}–${job.maxExperienceYears}yr`, lbl: 'Experience' },
@@ -152,10 +154,10 @@ const JobDetailsPage = () => {
           },
         ].map((s, i) => (
                 <React.Fragment key={i}>
-                  {i > 0 && <div className="h-7 w-px bg-orange-200" />}
+                  {i > 0 && <div className="h-7 w-px bg-white/20" />}
                   <div className="text-center">
-                     <p className="text-[16px] font-extrabold text-slate-900">{s.val}</p>
-                      <p className="text-[12px] uppercase font-bold text-slate-700">{s.lbl}</p>
+                     <p className="text-[16px] font-extrabold text-white">{s.val}</p>
+                      <p className="text-[12px] uppercase font-bold text-slate-400">{s.lbl}</p>
                     </div>
                 </React.Fragment>
               ))}
@@ -207,14 +209,13 @@ const JobDetailsPage = () => {
           <div className="anim-right lg:col-span-5" style={{ animationDelay: '250ms' }}>
             <div className="sticky top-20 flex flex-col gap-5">
 
-              {/* Job highlights card — black */}
+              {/* Job highlights card — dark gradient */}
               <div
-                className="relative overflow-hidden rounded-3xl p-7 border border-orange-200"
-                style={{ background: 'linear-gradient(135deg, #fff9f5 20%, #E68736 100%)' }}
+                className="relative overflow-hidden rounded-3xl p-7 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white"
               >
-                <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full border-[14px] border-white opacity-10" />
+                <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full border-[14px] border-orange-400/70 opacity-10" />
 
-                <h4 className="mb-5 text-xl font-extrabold text-slate-900">Job Highlights</h4>
+                <h4 className="mb-5 text-xl font-extrabold text-white">Job Highlights</h4>
 
                 <div className="mb-6 flex flex-col gap-4">
                   <SidebarTile
@@ -245,16 +246,16 @@ const JobDetailsPage = () => {
 
                 <button
                   onClick={() => setIsApplying(true)}
-                  className={`w-full rounded-full py-5 text-xs font-black uppercase border border-orange-200 tracking-widest text-black  transition-all active:scale-[0.97] ${
+                  className={`w-full rounded-full py-5 text-xs font-black uppercase tracking-widest transition-all active:scale-[0.97] ${
                     existingAppId
-                      ? 'bg-white/10 hover:bg-white/20'
-                      : 'bg-white/60 shadow-orange-600/20 hover:opacity-90'
+                      ? 'bg-white/10 border border-white/20 text-white hover:bg-white/20'
+                      : 'bg-[#E68736] text-white shadow-lg shadow-orange-900/40 hover:opacity-90'
                   }`}
                 >
                   {existingAppId ? 'Update Application ' : 'Apply Now '}
                 </button>
 
-                <p className="mt-4 text-center text-[12px] font-bold uppercase text-slate-700">
+                <p className="mt-4 text-center text-[12px] font-bold uppercase text-slate-400">
                   Digident Recruitment Team
                 </p>
               </div>
@@ -328,12 +329,12 @@ const BulletCard = ({ title, data }) => (
 
 const SidebarTile = ({ icon, label, value }) => (
   <div className="flex items-start gap-3">
-    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/30 text-slate-900">
+    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#E68736]">
       {icon}
     </div>
     <div>
-      <p className="text-[16px] font-bold text-slate-600">{label}</p>
-      <p className="text-[15px] font-bold text-slate-900">{value}</p>
+      <p className="text-[16px] font-bold text-slate-400">{label}</p>
+      <p className="text-[15px] font-bold text-white">{value}</p>
     </div>
   </div>
 );

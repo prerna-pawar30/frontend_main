@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Briefcase, MapPin, ArrowRight } from 'lucide-react';
+import { Briefcase, MapPin, ArrowRight, Star } from 'lucide-react';
 
-const JobCard = ({ job, index, applicationId }) => {
+const JobCard = ({ job, index }) => {
   const navigate = useNavigate();
 
   const handleApplyClick = () => {
@@ -15,78 +15,83 @@ const JobCard = ({ job, index, applicationId }) => {
 
   return (
     <div
-      className="group flex flex-col overflow-hidden rounded-2xl border border-orange-200 bg-white transition-all duration-300 hover:shadow-xl hover:shadow-orange-100/30"
+      className="group flex flex-col overflow-hidden rounded-[2rem] border border-orange-200 bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-orange-200/50 hover:-translate-y-1"
       style={{
         opacity: 0,
-        animation: `cardIn 0.55s ease-out ${index * 100}ms both`,
-        maxWidth: '400px', // Slightly wider for better text flow
+        animation: `cardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${index * 100}ms both`,
+        maxWidth: '400px',
       }}
     >
-      <style>{`@keyframes cardIn { from { opacity:0; transform:translateY(15px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <style>{`@keyframes cardIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
-      {/* Hero Header - Balanced Size */}
-<div
-  className="relative px-6 py-5 overflow-hidden"
-  style={{ background: 'linear-gradient(135deg, #fff9f5 20%, #E68736 100%)' }}
->
-  <div className="pointer-events-none absolute -right-4 -top-4 h-16 w-16 rounded-full border-[10px] border-white opacity-10" />
+      {/* --- DARK HEADER SECTION --- */}
+      <div
+        className="relative px-6 py-8 overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #0f172a 20%, #1e293b 100%)' }}
+      >
+        {/* Decorative Glow */}
+        <div className="pointer-events-none absolute -right-4 -top-4 h-24 w-24 rounded-full border-[12px] border-orange-500 opacity-10 blur-xl transition-all duration-500 group-hover:opacity-25 group-hover:scale-125" />
 
-  {/* Employment type badge */}
-  <span className="text-[11px] font-black uppercase tracking-widest text-[#E68736] bg-white/20 px-2.5 py-1 rounded">
-    {job.employmentType?.replace('_', ' ')}
-  </span>
+        {/* Badge Row */}
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-[10px] font-black uppercase tracking-[0.15em] text-[#E68736] bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-lg backdrop-blur-md">
+            {job.employmentType?.replace('_', ' ')}
+          </span>
+          <Star size={16} className="text-slate-500 group-hover:text-orange-400 transition-colors" />
+        </div>
 
-  {/* Title */}
-  <h3 className="text-xl font-black leading-tight text-slate-900 transition-colors duration-300 group-hover:text-[#E68736]">
-    {job.title}
-  </h3>
+        {/* Job Title */}
+        <h3 className="text-2xl font-bold leading-tight text-white transition-colors duration-300 group-hover:text-orange-400">
+          {job.title}
+        </h3>
 
-  {/* Meta icons */}
-  <div className="mt-3 flex flex-wrap gap-4 text-[13px] font-semibold text-slate-700">
-    <span className="flex items-center gap-1.5">
-      <Briefcase size={14} className="text-[#E68736]" /> {job.department}
-    </span>
-    <span className="flex items-center gap-1.5">
-      <MapPin size={14} className="text-[#E68736]" /> {job.location}
-    </span>
-  </div>
-</div>
+        {/* Header Meta Icons */}
+        <div className="mt-5 flex flex-wrap gap-4 text-[16px] font-medium text-slate-400">
+          <span className="flex items-center gap-1.5 transition-colors group-hover:text-slate-200">
+            <Briefcase size={16} className="text-orange-500" /> 
+            {job.department}
+          </span>
+          <span className="flex items-center gap-1.5 transition-colors group-hover:text-slate-200">
+            <MapPin size={16} className="text-orange-500" /> 
+            {job.location}
+          </span>
+        </div>
 
-      {/* Card Content - Better Breathing Room */}
-      <div className="flex flex-1 flex-col p-6">
+        {/* Animated bottom line */}
+        <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-orange-500 transition-all duration-700 group-hover:w-full" />
+      </div>
+
+      {/* --- LIGHT BODY SECTION --- */}
+      <div className="flex flex-1 flex-col p-6 bg-white">
         
-        {/* Quick Stats Grid - Readable Tiles */}
-        <div className="mb-5 grid grid-cols-2 gap-3">
-          <MetaTile label="Experience" value={`${job.minExperienceYears}–${job.maxExperienceYears} Yr`} />
+        {/* Stats Grid */}
+        <div className="mb-6 grid grid-cols-2 gap-3 ">
+          <MetaTile label="Experience " value={`${job.minExperienceYears}–${job.maxExperienceYears} Yr`} />
           <MetaTile label="Level" value={job.experienceLevel} />
           <MetaTile
             label="Vacancies"
             value={`${job.openings} Post${job.openings > 1 ? 's' : ''}`}
           />
-          {job.salary?.isVisible ? (
-            <MetaTile
-              label="Salary (PA)"
-              value={`₹${formatSalary(job.salary.min)}–${formatSalary(job.salary.max)}`}
-            />
-          ) : (
-            <MetaTile label="Salary" value="Competitive" />
-          )}
+          <MetaTile
+            label="Salary (PA)"
+            value={job.salary?.isVisible ? `₹${formatSalary(job.salary.min)}–${formatSalary(job.salary.max)}` : "Competitive"}
+          />
         </div>
 
-        {/* Description - Readable Body Text */}
+        {/* Short Description */}
         {job.shortDescription && (
-          <p className="mb-5 line-clamp-2 text-[14px] font-medium leading-relaxed text-gray-600">
-            {job.shortDescription}
+          <p className="mb-6 line-clamp-2 text-[14px] font-medium leading-relaxed text-gray-500 italic">
+            "{job.shortDescription}"
           </p>
         )}
 
-        {/* Skills - Standard Sized Tags */}
+        {/* Skills Tags */}
         {job.skills?.length > 0 && (
-          <div className="mb-6 flex flex-wrap gap-2">
-            {job.skills.map((skill) => (
+          <div className="mb-8 flex flex-wrap gap-2">
+            {job.skills.slice(0, 4).map((skill) => (
               <span
                 key={skill}
-                className="rounded-lg bg-slate-50 border border-orange-100 px-3 py-1.5 text-[12px] font-bold text-slate-600 hover:border-[#E68736] hover:text-[#E68736] hover:bg-orange-50 transition-all cursor-default"
+                className="rounded-lg bg-slate-50 border border-slate-100 px-3 py-1.5 text-[13px] font-bold text-slate-600 transition-all hover:border-orange-300 hover:text-orange-600 hover:bg-orange-50 cursor-default"
               >
                 {skill}
               </span>
@@ -94,15 +99,18 @@ const JobCard = ({ job, index, applicationId }) => {
           </div>
         )}
 
-        {/* Action Button - High Visibility */}
-        <div className="mt-auto pt-4 border-t border-slate-100">
+        {/* Action Button - Vivid Orange */}
+        <div className="mt-auto pt-6 border-t border-slate-50">
           <button
             onClick={handleApplyClick}
-            className="group/btn flex w-full items-center justify-center gap-2 rounded-xl  py-3.5 text-[13px] font-black uppercase tracking-[0.1em] text-black transition-all duration-300 active:scale-[0.98]  border border-orange-200 hover:shadow-slate-200"
-             style={{ background: 'linear-gradient(135deg, #fff9f5 20%, #E68736 100%)' }}
+            className="group/btn relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl py-4 text-[14px] font-black uppercase tracking-[0.1em] text-white transition-all duration-300 active:scale-[0.96]  hover:shadow-orange-400/40"
+            style={{ background: 'linear-gradient(135deg, #FF9D4D 0%, #E68736 100%)' }}
           >
-            <span>View Details & Apply</span>
-            <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
+            <span className="relative z-10">View Details & Apply</span>
+            <ArrowRight size={18} className="relative z-10 transition-transform group-hover/btn:translate-x-1.5" />
+            
+            {/* Glossy Overlay effect on hover */}
+            <div className="absolute inset-0 z-0 bg-white opacity-0 transition-opacity duration-300 group-hover/btn:opacity-10" />
           </button>
         </div>
       </div>
@@ -110,11 +118,11 @@ const JobCard = ({ job, index, applicationId }) => {
   );
 };
 
-/* Reusable Meta Component - Balanced Hierarchy */
+/* Reusable Meta Tile - Matches Light Body */
 const MetaTile = ({ label, value }) => (
-  <div className="rounded-xl bg-[#FFF9F2] px-3 py-2.5 border border-orange-100/30">
-    <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{label}</p>
-    <p className="text-[14px] font-black text-slate-800 leading-tight">{value}</p>
+  <div className="rounded-2xl bg-orange-50/50 px-4 py-3 border border-orange-100/50 transition-colors hover:bg-orange-50 hover:border-orange-200">
+    <p className="text-[13px] font-bold  text-orange-400 mb-1">{label}</p>
+    <p className="text-[13px] font-extrabold text-slate-800 leading-tight">{value}</p>
   </div>
 );
 

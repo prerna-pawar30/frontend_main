@@ -24,20 +24,17 @@ const LibraryHero = ({ selectedCategory }) => {
 
 return (
     <div className="max-w-7xl mx-auto mb-10">
-      <div
-        className="relative overflow-hidden rounded-[1.5rem] border border-orange-200 md:rounded-1xl p-6 md:p-12"
-        style={{ background: 'linear-gradient(135deg, #fff9f5 20%, #E68736 100%)' }}
-      >
-        <div className="absolute -top-20 -right-20 w-40 h-40 md:w-60 md:h-60 bg-white/20 rounded-full blur-3xl"></div>
+      <div className="relative overflow-hidden rounded-[1.5rem] md:rounded-1xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 md:p-12 text-white">
+        <div className="absolute -top-20 -right-20 w-40 h-40 md:w-60 md:h-60 bg-[#E68736]/30 rounded-full blur-3xl"></div>
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           <div className="text-center md:text-left">
-            <h2 className="text-xl md:text-4xl font-black uppercase tracking-tight mb-3 text-slate-900">
-              Download<span className="text-[#E68736]"> {selectedCategory} </span>Library Guide
+            <h2 className="text-xl md:text-4xl font-black uppercase tracking-tight mb-3">
+               Download<span className="text-[#E68736]"> {selectedCategory} </span>Library Guide
             </h2>
-            <p className="text-slate-700 text-xs md:text-[16px] leading-relaxed max-w-md mx-auto md:mx-0">
+            <p className="text-slate-300 text-xs md:text-[16px] leading-relaxed max-w-md mx-auto md:mx-0">
               Access complete product documentation, technical specifications, and downloadable resources.
             </p>
-            <ul className="mt-4 space-y-2 text-[10px] md:text-[15px] font-semibold text-slate-800 hidden sm:block">
+            <ul className="mt-4 space-y-2 text-[10px] md:text-[15px] font-semibold text-slate-200 hidden sm:block">
               <li>✔ Brand-wise organized files</li>
               <li>✔ Updated technical references</li>
               <li>✔ One-click ZIP downloads</li>

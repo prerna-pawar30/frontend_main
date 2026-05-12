@@ -35,7 +35,7 @@ const FlipCard = ({ feature, index }) => {
         }}
       >
 
-        {/* ── FRONT FACE ── */}
+        {/* ── FRONT FACE — dark slate ── */}
         <div
           style={{
             position: 'absolute',
@@ -47,21 +47,26 @@ const FlipCard = ({ feature, index }) => {
           <div
             className="w-full h-full rounded-[2rem] flex flex-col items-center justify-between p-8"
             style={{
-              background: 'linear-gradient(160deg, #ffffff 0%, #fff8f2 100%)',
-              border: '1.5px solid rgba(241,135,48,0.18)',
-              boxShadow: '0 6px 40px rgba(241,135,48,0.08), 0 2px 12px rgba(0,0,0,0.05)',
+              background: 'linear-gradient(135deg, #f7faff 0%, #ffffff 50%, #ffffff 100%)',
+              border: '2.5px solid rgba(236, 126, 30, 0.25)',
+              // boxShadow: '0 6px 40px rgba(0,0,0,0.4), 0 2px 12px rgba(0,0,0,0.2)',
               minHeight: '440px',
             }}
           >
-            {/* Number + hover hint */}
+            {/* Top accent line */}
+            <div
+              className="absolute top-0 left-[15%] right-[15%] h-[1px] rounded-full pointer-events-none"
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(230,135,54,0.5), transparent)' }}
+            />
+
+            {/* Number */}
             <div className="w-full flex justify-between items-center mb-2">
               <span
                 className="text-[11px] font-bold tracking-[0.22em] uppercase"
-                style={{ color: 'rgba(241,135,48,0.5)'}}
+                style={{ color: 'rgba(230,135,54,0.6)' }}
               >
                 0{index + 1}
               </span>
-              
             </div>
 
             {/* Floating icon */}
@@ -76,7 +81,7 @@ const FlipCard = ({ feature, index }) => {
                   className="absolute rounded-full"
                   style={{
                     width: 130, height: 130,
-                    background: 'radial-gradient(circle, rgba(241,135,48,0.18) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(230,135,54,0.2) 0%, transparent 70%)',
                     filter: 'blur(16px)',
                   }}
                 />
@@ -85,9 +90,9 @@ const FlipCard = ({ feature, index }) => {
                   alt={feature.title}
                   className="relative object-contain"
                   style={{
-                    maxHeight: 160,
+                    maxHeight: 240,
                     maxWidth: '100%',
-                    filter: 'drop-shadow(0 8px 20px rgba(241,135,48,0.22))',
+                    filter: 'drop-shadow(0 8px 24px rgba(230,135,54,0.3))',
                   }}
                 />
               </div>
@@ -96,20 +101,20 @@ const FlipCard = ({ feature, index }) => {
             {/* Title block */}
             <div className="w-full mt-6 text-center">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="h-[1px] w-8 rounded-full bg-gradient-to-r from-transparent to-[#f18730] opacity-40" />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#f18730] opacity-60" />
-                <div className="h-[1px] w-8 rounded-full bg-gradient-to-l from-transparent to-[#f18730] opacity-40" />
+                <div className="h-[1px] w-8 rounded-full bg-gradient-to-r from-transparent to-[#E68736] opacity-40" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#E68736] opacity-70" />
+                <div className="h-[1px] w-8 rounded-full bg-gradient-to-l from-transparent to-[#E68736] opacity-40" />
               </div>
               <h4
                 className="font-bold text-[24px] mb-1"
-                style={{ color: '#f18730', letterSpacing: '-0.01em' }}
+                style={{ color: '#000000', letterSpacing: '-0.01em' }}
               >
                 {feature.title}
               </h4>
               {feature.subtitle && (
                 <p
                   className="text-[12px] uppercase tracking-[0.18em] font-semibold"
-                  style={{ color: '#1a2b3b' }}
+                  style={{ color: 'rgba(148,163,184,0.8)' }}
                 >
                   {feature.subtitle}
                 </p>
@@ -118,7 +123,7 @@ const FlipCard = ({ feature, index }) => {
           </div>
         </div>
 
-        {/* ── BACK FACE ── */}
+        {/* ── BACK FACE — dark slate with orange accents ── */}
         <div
           style={{
             position: 'absolute',
@@ -131,24 +136,25 @@ const FlipCard = ({ feature, index }) => {
           <div
             className="w-full h-full rounded-[2rem] flex flex-col justify-between p-8"
             style={{
-              background: 'linear-gradient(145deg, #ffffff 0%, #E68736 100%)',
-              border: '1.5px solid rgba(241,135,48,0.35)',
-              boxShadow: '0 0 50px rgba(241,135,48,0.20), 0 8px 40px rgba(0,0,0,0.25)',
+              background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 60%, #2d1a0a 100%)',
+              border: '1.5px solid rgba(230,135,54,0.4)',
+              boxShadow: '0 0 50px rgba(230,135,54,0.15), 0 8px 40px rgba(0,0,0,0.45)',
               minHeight: '440px',
+              position: 'relative',
             }}
           >
             {/* Top glow line */}
             <div
               className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[2px] rounded-full"
-              style={{ background: 'linear-gradient(90deg, transparent, #f18730, transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, #E68736, transparent)' }}
             />
 
             {/* Badge */}
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#f18730] animate-pulse" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#E68736] animate-pulse" />
               <span
                 className="text-[14px] uppercase tracking-[0.25em] font-bold"
-                style={{ color: 'rgba(255, 129, 26, 0.7)' }}
+                style={{ color: 'rgba(230,135,54,0.8)' }}
               >
                 0{index + 1} — Details
               </span>
@@ -157,7 +163,7 @@ const FlipCard = ({ feature, index }) => {
             {/* Watermark icon */}
             <div
               className="absolute bottom-0 right-0 pointer-events-none overflow-hidden rounded-br-[2rem]"
-              style={{ opacity: 0.06 }}
+              style={{ opacity: 0.07 }}
             >
               <img src={feature.icon} alt="" style={{ width: 160, height: 160, objectFit: 'contain' }} />
             </div>
@@ -166,25 +172,25 @@ const FlipCard = ({ feature, index }) => {
             <div className="flex-1 flex flex-col justify-center py-4">
               <h4
                 className="font-bold text-[26px] mb-3 leading-tight"
-                style={{ color: '#fd821d' }}
+                style={{ color: '#E68736' }}
               >
                 {feature.title}
               </h4>
               {feature.subtitle && (
                 <p
                   className="text-[14px] uppercase tracking-[0.1em] mb-4 font-bold"
-                  style={{ color: 'rgba(0, 0, 0, 0.45)' }}
+                  style={{ color: 'rgba(148,163,184,0.6)' }}
                 >
                   {feature.subtitle}
                 </p>
               )}
               <div
                 className="w-12 h-[2px] rounded-full mb-5"
-                style={{ background: 'linear-gradient(90deg, #fa770c, transparent)' }}
+                style={{ background: 'linear-gradient(90deg, #E68736, transparent)' }}
               />
               <p
                 className="text-[15px] leading-[1.8] font-semibold"
-                style={{ color: 'rgba(0, 0, 0, 0.75)' }}
+                style={{ color: 'rgba(203,213,225,0.85)' }}
               >
                 {feature.description}
               </p>
@@ -194,11 +200,11 @@ const FlipCard = ({ feature, index }) => {
             <div className="flex items-center gap-2 mt-2">
               <div
                 className="h-[2px] flex-1 rounded-full"
-                style={{ background: 'linear-gradient(90deg, rgba(251, 120, 13, 0.5), transparent)' }}
+                style={{ background: 'linear-gradient(90deg, rgba(230,135,54,0.5), transparent)' }}
               />
               <span
                 className="text-[10px] uppercase tracking-widest"
-                style={{ color: 'rgba(57, 26, 1, 0.5)' }}
+                style={{ color: 'rgba(148,163,184,0.5)' }}
               >
                 Digident India
               </span>
@@ -243,7 +249,7 @@ const FeaturesSection = () => {
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=DM+Mono:wght@500&display=swap');
       `}</style>
 
-      <section className=" py-20 overflow-hidden relative">
+      <section className="py-20 overflow-hidden relative">
 
         {/* Soft ambient bg tint */}
         <div
@@ -263,16 +269,14 @@ const FeaturesSection = () => {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="text-center max-w-4xl mx-auto mb-16"
           >
-            
             <h2
               className="text-[34px] md:text-[42px] font-bold text-[#1a2b3b] mb-4 leading-tight"
-              style={{  letterSpacing: '-0.02em' }}
+              style={{ letterSpacing: '-0.02em' }}
             >
               Designed,{' '}
               <span className="text-[#f18730]">Manufactured</span>, and Perfected{' '}
               <span className="text-[#f18730]">by Experts</span>
             </h2>
-
           </motion.div>
 
           {/* Flip Cards Grid */}
