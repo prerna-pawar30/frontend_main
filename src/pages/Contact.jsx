@@ -87,7 +87,7 @@ export default function Contact() {
       {/* Heading */}
       <div className="text-center px-6 ">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-[#072434]">
-          Contact Us
+          Contact <span className="text-[#E68736]">Us</span>
         </h2>
         <p className="text-[18px] text-gray-400 mt-2">Drop us a Message</p>
       </div>
@@ -147,8 +147,8 @@ export default function Contact() {
             <div className="sm:col-span-2">
               <button
                 type="submit"
-                className="w-full sm:w-auto  text-white font-semibold py-3 px-10 rounded-lg text-[18px] transition-colors duration-300"
-                style={{ background: 'linear-gradient(160deg, #fbd3bc, #f6811b 100%)' }}
+                className="w-full sm:w-auto  text-white font-semibold py-3 px-10 rounded-lg text-[18px] transition-colors duration-300 bg-[#E68736] hover:bg-[#f59e3f] focus:outline-none focus:ring-2 focus:ring-[#E68736]/50"
+                
               >
                 Send Message
               </button>

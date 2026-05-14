@@ -7,7 +7,7 @@ import "../../pages/HomeNew.css";
 const DigidentAbout = () => {
   return (
     // Removed px-6, md:px-12, lg:px-6
-    <section className="bg-white py-6 overflow-hidden relative w-full">
+    <section className="bg-white  overflow-hidden relative w-full">
       
       {/* Background Image: Left Side Down */}
       <motion.div 
@@ -46,11 +46,11 @@ const DigidentAbout = () => {
             transition={{ duration: 0.8 }}
             className="w-full md:w-1/2 flex"
           >
-            <div className="rounded-[2.5rem] overflow-hidden w-full shadow-lg">
+            <div className="rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden w-full ">
               <img 
                 src={manufacturingImg} 
                 alt="Robotic manufacturing arm" 
-                className="w-full h-[500px] object-cover" 
+                className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] object-cover" 
               />
             </div>
           </motion.div>

@@ -110,7 +110,7 @@ export default function About() {
           className="text-2xl md:text-3xl font-bold text-center mb-10 md:mb-12"
           data-aos="fade-down"
         >
-          About Us
+         About <span className="text-[#E68736]">Us</span>
         </h2>
 
         {/* ================= SECTION 1 : HERO — UNTOUCHED ================= */}
@@ -266,13 +266,13 @@ export default function About() {
         {/* ================= SECTION 4 : STATS + CTA — 3D DEPTH ================= */}
         <Float3D from="bottom" delay={0.05}>
           <section
-            className="rounded-[1rem] p-6 md:p-12 flex flex-col lg:flex-row gap-12 items-center"
-            style={{ background: 'linear-gradient(160deg, #F7E6DC, #E68736 100%)' }}
+            className="rounded-[1rem] p-6 md:p-12 flex flex-col lg:flex-row gap-12 items-center border-2 border-[#E68736] bg-[linear-gradient(135deg,#fdf6f0_0%,#fbe8d9_50%,#fdf6f0_100%)]"
+            
           >
             {/* Stats grid */}
             <div className="lg:w-1/2 grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
               {[
-                { val: "2010", label: "Founding Year" },
+                { val: "2016", label: "Founding Year" },
                 { val: "2000", label: "Happy Customers" },
                 { val: "190",  label: "Company Work" },
                 { val: "750",  label: "Projects Completed" },
@@ -322,8 +322,8 @@ export default function About() {
                   <motion.button
                     whileHover={{ scale: 1.07, y: -3 }}
                     whileTap={{ scale: 0.96 }}
-                    className="w-full sm:w-auto text-[#072434] px-8 py-3 rounded-[1rem] text-xs font-bold transition"
-                    style={{ background: 'linear-gradient(160deg, #F7E6DC, #f6811b 100%)' }}
+                    className="w-full sm:w-auto text-[#072434] px-8 py-3 rounded-[1rem] text-xs font-bold transition bg-[#E68736] hover:bg-[#f59e3f]"
+                    
                   >
                     Contact Us
                   </motion.button>

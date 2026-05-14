@@ -80,223 +80,31 @@ export default function Products() {
   };
 
   return (
-    <div className="products-page">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap');
+    <div className="relative min-h-screen overflow-hidden bg-white px-8 py-14  font-normal">
+      {/* Background Decorative Gradients */}
+      <div className="pointer-events-none absolute -right-20 -top-20 h-[400px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(230,135,54,0.12)_0%,transparent_70%)]" />
+      <div className="pointer-events-none absolute -bottom-14 -left-14 h-[300px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(230,135,54,0.08)_0%,transparent_70%)]" />
 
-        .products-page {
-          background: #ffffff;
-          min-height: 100vh;
-          padding: 56px 32px 72px;
-          font-family: 'DM Sans', sans-serif;
-          position: relative;
-          overflow: hidden;
-        }
-        .products-page::before {
-          content: '';
-          position: absolute; top: -80px; right: -80px;
-          width: 600px; height: 400px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(230,135,54,0.12) 0%, transparent 70%);
-          pointer-events: none;
-        }
-        .products-page::after {
-          content: '';
-          position: absolute; bottom: -60px; left: -60px;
-          width: 600px; height: 300px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(230,135,54,0.08) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .p-head { text-align: center; margin-bottom: 36px; }
-        .p-head h1 {
-          font-size: clamp(30px, 7vw, 28px);
-          font-weight: 900; color: #072434;
-          text-transform: uppercase; line-height: 1;
-        }
-        .p-head h1 span { color: #E68736; }
-        .p-head p {
-          font-size: 12px; letter-spacing: 0.2em;
-          color: #a08060; text-transform: uppercase; margin-top: 8px;
-        }
-
-        .p-tabs {
-          display: flex; gap: 8px; justify-content: center;
-          margin-bottom: 36px; flex-wrap: wrap;
-        }
-        .p-tab {
-          padding: 7px 22px; border-radius: 20px;
-          font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-          cursor: pointer; border: 1.5px solid #E68736; color: #E68736; background: #fff;
-          transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-        }
-        .p-tab.active {
-          background: #E68736; color: #fff;
-          box-shadow: 0 4px 12px rgba(230,135,54,0.3);
-        }
-        .p-tab:hover:not(.active) { background: rgba(230,135,54,0.08); }
-
-        /* ── Stack ── */
-        .p-stack {
-          position: relative;
-          width: 100%;
-          max-width: 980px;
-          margin: 0 auto;
-          height: 580px;
-          perspective: 1400px;
-        }
-
-        /* ── Dark card: slate-900 → slate-800 → slate-900 ── */
-        .p-card {
-          position: absolute; inset: 0;
-          border-radius: 28px;
-          background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-          box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
-          display: flex; flex-direction: column;
-          padding: 26px 30px 18px;
-          transition: transform 0.65s cubic-bezier(0.34,1.26,0.64,1),
-                      opacity 0.5s ease,
-                      box-shadow 0.4s ease;
-          transform-origin: center center;
-          overflow: hidden;
-          will-change: transform;
-        }
-
-        .p-card[data-pos="0"] {
-          transform: translateZ(0) translateY(0) scale(1);
-          z-index: 10; opacity: 1;
-          box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 8px 24px rgba(230,135,54,0.15);
-        }
-        .p-card[data-pos="1"] {
-          transform: translateZ(-70px) translateY(20px) scale(0.96);
-          z-index: 9; opacity: 1; pointer-events: none;
-        }
-        .p-card[data-pos="2"] {
-          transform: translateZ(-140px) translateY(40px) scale(0.92);
-          z-index: 8; opacity: 0.8; pointer-events: none;
-        }
-        .p-card[data-pos="3"] {
-          transform: translateZ(-210px) translateY(60px) scale(0.88);
-          z-index: 7; opacity: 0.55; pointer-events: none;
-        }
-
-        .p-card.exiting {
-          transform: translateX(-130%) translateY(-40px) rotateY(-25deg) rotateZ(-8deg) scale(0.85) !important;
-          opacity: 0 !important;
-          transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease !important;
-          z-index: 20 !important;
-          pointer-events: none;
-        }
-
-        /* Badge — adjusted for dark bg */
-        .p-card-badge {
-          display: inline-flex; align-items: center; gap: 6px;
-          background: rgba(255,255,255,0.08);
-          border: 1px solid rgba(230,135,54,0.4);
-          border-radius: 20px; padding: 4px 14px;
-          font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-          color: #E68736; text-transform: uppercase;
-          width: fit-content; margin-bottom: 14px;
-        }
-        .p-badge-dot {
-          width: 6px; height: 6px; border-radius: 50%;
-          background: #E68736; display: inline-block;
-        }
-
-        /* Title — white on dark */
-        .p-card-title {
-          font-family: 'Barlow Condensed', sans-serif;
-          font-size: clamp(36px, 5.5vw, 58px);
-          font-weight: 900; color: #ffffff; line-height: 1;
-          text-transform: uppercase; letter-spacing: -0.01em;
-          margin-bottom: 12px;
-        }
-
-        /* Description — light slate on dark */
-        .p-card-desc {
-          font-size: 18px;
-          color: rgba(203, 213, 225, 0.85); /* slate-300 with slight transparency */
-          line-height: 1.7;
-          max-width: 890px;
-        }
-
-        .p-card-img {
-          flex: 1; display: flex; align-items: flex-end; justify-content: flex-end;
-          margin-top: 16px; position: relative;
-        }
-        .p-card-img img {
-          max-height: 400px;
-          max-width: 440px;
-          object-fit: contain;
-          filter: drop-shadow(0 14px 32px rgba(230,135,54,0.3));
-          transition: transform 0.4s ease;
-        }
-        .p-card[data-pos="0"]:hover .p-card-img img {
-          transform: translateY(-8px) scale(1.05);
-        }
-
-        /* Large number — slightly brighter on dark */
-        .p-card-num {
-          position: absolute; bottom: 0; left: 0;
-          font-family: 'Barlow Condensed', sans-serif;
-          font-size: 110px; font-weight: 900;
-          color: rgba(255, 255, 255, 0.06); line-height: 1;
-          pointer-events: none; user-select: none;
-        }
-
-        /* Footer — border adjusted for dark */
-        .p-card-foot {
-          display: flex; align-items: center; justify-content: space-between;
-          margin-top: auto; padding-top: 18px;
-          border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .p-view-btn {
-          background: #E68736; color: #fff;
-          border: none; border-radius: 10px;
-          padding: 10px 24px; font-size: 14px; font-weight: 600;
-          cursor: pointer; transition: background 0.2s, transform 0.15s;
-          font-family: 'DM Sans', sans-serif;
-        }
-        .p-view-btn:hover { background: #f59e3f; transform: scale(1.03); }
-
-        /* Counter — muted slate on dark */
-        .p-card-count {
-          font-size: 13px;
-          color: rgba(148, 163, 184, 0.7); /* slate-400 */
-          font-weight: 500;
-        }
-
-        .p-nav {
-          display: flex; align-items: center; justify-content: center;
-          gap: 16px; margin-top: 32px;
-        }
-        .p-nav-btn {
-          width: 52px; height: 52px; border-radius: 50%;
-          border: 2px solid #E68736; background: #fff; color: #E68736;
-          font-size: 22px; cursor: pointer;
-          display: flex; align-items: center; justify-content: center;
-          transition: all 0.2s; box-shadow: 0 4px 12px rgba(230,135,54,0.2);
-          font-weight: 700;
-        }
-        .p-nav-btn:hover { background: #E68736; color: #fff; transform: scale(1.08); }
-        .p-nav-btn:active { transform: scale(0.95); }
-
-        @media (max-width: 600px) {
-          .p-stack { height: 430px; }
-          .p-card { padding: 24px 22px 20px; }
-          .p-card-desc { max-width: 100%; }
-        }
-      `}</style>
-
-      <div className="p-head">
-        <h1>Our <span>Products</span></h1>
-        <p>Precision-Engineered Dental Solutions</p>
+      {/* Header */}
+      <div className="mb-9 text-center">
+        <h1 className="text-[clamp(28px,7vw,30px)] font-black leading-none text-[#072434]">
+          Our <span className="text-[#E68736]">Products</span>
+        </h1>
+        <p className="mt-2 text-[14px] font-normal  tracking-[0.1em] text-[#a08060]">
+          Precision-Engineered Dental Solutions
+        </p>
       </div>
 
-      <div className="p-tabs">
+      {/* Tabs */}
+      <div className="mb-9 flex flex-wrap justify-center gap-2">
         {products.map((p, i) => (
           <button
             key={i}
-            className={`p-tab${i === current ? " active" : ""}`}
+            className={`cursor-pointer rounded-[20px] border-[1.5px] border-[#E68736] px-[22px] py-[7px] text-[12px] uppercase tracking-[0.06em] transition-all duration-200 ${
+              i === current
+                ? "bg-[#E68736] text-white shadow-[0_4px_12px_rgba(230,135,54,0.3)] font-semibold"
+                : "bg-white text-[#E68736] font-normal hover:bg-[rgba(230,135,54,0.08)]"
+            }`}
             onClick={() => goTo(i)}
           >
             {p.title}
@@ -304,34 +112,80 @@ export default function Products() {
         ))}
       </div>
 
-      <div className="p-stack">
+      {/* Card Stack */}
+      <div className="relative mx-auto h-[430px] w-full max-w-[980px] [perspective:1400px] md:h-[580px]">
         {products.map((p, i) => {
           const pos = getPos(i, current, n);
           const isExiting = exitIdx === i;
+
+          // POSITIONAL STYLING
+          let transformClass = "";
+          let zIndex = "";
+          let opacity = "opacity-100";
+
+          if (isExiting) {
+            transformClass = "-translate-x-[130%] -translate-y-10 -rotate-y-[25deg] -rotate-z-[8deg] scale-[0.85]";
+            zIndex = "z-20";
+            opacity = "opacity-0";
+          } else {
+            if (pos === 0) {
+              transformClass = "translate-z-0 translate-y-0 scale-100";
+              zIndex = "z-10";
+              opacity = "opacity-100";
+            } else if (pos === 1) {
+              transformClass = "-translate-z-[70px] translate-y-5 scale-[0.96]";
+              zIndex = "z-[9]";
+            } else if (pos === 2) {
+              transformClass = "-translate-z-[140px] translate-y-10 scale-[0.92]";
+              zIndex = "z-[8]";
+              opacity = "opacity-80";
+            } else {
+              transformClass = "-translate-z-[210px] translate-y-[60px] scale-[0.88]";
+              zIndex = "z-[7]";
+              opacity = "opacity-[0.55]";
+            }
+          }
+
           return (
             <div
               key={i}
-              className={`p-card${isExiting ? " exiting" : ""}`}
-              data-pos={isExiting ? undefined : pos}
+              className={`absolute inset-0 flex flex-col overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0f172a_0%,#1e293b_50%,#0f172a_100%)] p-6 transition-all duration-[650ms] [transform-origin:center_center] [will-change:transform] md:px-[30px] md:pb-[18px] md:pt-[26px] ${transformClass} ${zIndex} ${opacity} ${
+                pos === 0 && !isExiting 
+              }`}
             >
-              <div className="p-card-badge">
-                <span className="p-badge-dot" />
+              <div className="mb-3.5 inline-flex w-fit items-center gap-1.5 rounded-[20px] border border-[#E68736]/40 bg-white/5 px-3.5 py-1 text-[11px] font-normal uppercase tracking-widest text-[#E68736]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#E68736]" />
                 {p.badge}
               </div>
-              <div className="p-card-title">{p.title}</div>
-              <p className="p-card-desc">
+
+              <div className="mb-3  text-[32px] font-black uppercase tracking-tight text-white leading-none md:text-[clamp(36px,5.5vw,58px)]">
+                {p.title}
+              </div>
+
+              <p className="max-w-[890px] text-base font-normal leading-relaxed text-slate-300/85 md:text-lg md:leading-[1.7]">
                 <span className="md:hidden">{p.mobileDesc}</span>
                 <span className="hidden md:block">{p.desktopDesc}</span>
               </p>
-              <div className="p-card-img">
-                <span className="p-card-num">0{i + 1}</span>
-                <img src={p.image} alt={p.title} />
+
+              <div className="relative mt-4 flex flex-1 items-end justify-end group">
+                <span className="absolute bottom-0 left-0 select-none font-['Barlow_Condensed'] text-[110px] font-black leading-none text-white/5">
+                  0{i + 1}
+                </span>
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="max-h-[400px] max-w-[440px] object-contain transition-transform duration-400 [filter:drop-shadow(0_14px_32px_rgba(230,135,54,0.3))] group-hover:-translate-y-2 group-hover:scale-105"
+                />
               </div>
-              <div className="p-card-foot">
-                <button className="p-view-btn" onClick={() => navigate(p.link)}>
+
+              <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-[18px]">
+                <button
+                  className="cursor-pointer rounded-lg bg-[#E68736] px-6 py-2.5 font-['DM_Sans'] text-sm font-normal text-white transition-all hover:bg-[#f59e3f] hover:scale-105 active:scale-95"
+                  onClick={() => navigate(p.link)}
+                >
                   View More →
                 </button>
-                <span className="p-card-count">
+                <span className="text-[13px] font-normal text-slate-400/70">
                   {String(i + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
                 </span>
               </div>
@@ -340,9 +194,20 @@ export default function Products() {
         })}
       </div>
 
-      <div className="p-nav">
-        <button className="p-nav-btn" onClick={slidePrev}>←</button>
-        <button className="p-nav-btn" onClick={slideNext}>→</button>
+      {/* Navigation Buttons */}
+      <div className="mt-8 flex items-center justify-center gap-4">
+        <button
+          className="flex h-[52px] w-[52px] cursor-pointer items-center justify-center rounded-full border-2 border-[#E68736] bg-white text-[22px] font-bold text-[#E68736] shadow-[0_4px_12px_rgba(230,135,54,0.2)] transition-all hover:bg-[#E68736] hover:text-white hover:scale-110 active:scale-95"
+          onClick={slidePrev}
+        >
+          ←
+        </button>
+        <button
+          className="flex h-[52px] w-[52px] cursor-pointer items-center justify-center rounded-full border-2 border-[#E68736] bg-white text-[22px] font-bold text-[#E68736] shadow-[0_4px_12px_rgba(230,135,54,0.2)] transition-all hover:bg-[#E68736] hover:text-white hover:scale-110 active:scale-95"
+          onClick={slideNext}
+        >
+          →
+        </button>
       </div>
     </div>
   );

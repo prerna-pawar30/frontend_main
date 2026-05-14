@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Hero from "../components/Home/Hero.jsx";
 import Brands from "../components/Home/Brand.jsx";
 import Category from "../components/Home/category.jsx";
@@ -10,11 +11,30 @@ import FeaturesSection from "../components/Home/Features.jsx";
 import { Link,  } from 'react-router-dom';
 import BlogSection from '../components/blogs/homepage-blog/Blog.jsx'; 
 import { FiArrowRight } from "react-icons/fi";
-
-
+import React, { useEffect, useState } from 'react';
+import apiService from '../api/ApiService';
 
 
 export default function HomeNew() {
+  const [hasEnoughBlogs, setHasEnoughBlogs] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkBlogs = async () => {
+      try {
+        const response = await apiService.getBlogs();
+        const allBlogs = response.data?.data?.blogs || response.data?.blogs || [];
+        // Only show if there are 4 or more blogs
+        setHasEnoughBlogs(allBlogs.length >= 4);
+      } catch (error) {
+        setHasEnoughBlogs(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkBlogs();
+  }, []);
+
   return (
     <div className="flex flex-col overflow-hidden">
       
@@ -63,34 +83,32 @@ export default function HomeNew() {
         <VideoGallery />
       </div>
        
-     <section className="py-15 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          
-          <div className="mb-12 flex flex-col items-end justify-between gap-4 md:flex-row md:items-center">
-            <div>
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-[#E68736]">
-                Our Journal
-              </p>
-              <h2 className="text-3xl font-black text-slate-900 md:text-4xl">
-                Latest <span className="text-[#E68736]">Insights</span>
-              </h2>
+{!loading && hasEnoughBlogs && (
+        <section className="py-15 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-12 flex flex-col items-end justify-between gap-4 md:flex-row md:items-center">
+              <div>
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-[#E68736]">
+                  Our Journal
+                </p>
+                <h2 className="text-3xl font-black text-slate-900 md:text-4xl">
+                  Latest <span className="text-[#E68736]">Insights</span>
+                </h2>
+              </div>
+              
+              <Link 
+                to="/blog" 
+                className="group inline-flex items-center gap-2 font-bold text-slate-900 hover:text-[#E68736] transition-colors"
+              >
+                View All Articles
+                <FiArrowRight size={24} /> 
+              </Link>
             </div>
-            
-            <Link 
-              to="/blog" 
-              className="group inline-flex items-center gap-2 font-bold text-slate-900 hover:text-[#E68736] transition-colors"
-            >
-             
-              View All Articles
-              <FiArrowRight size={24} /> 
-            </Link>
+
+            <BlogSection limit={4} />
           </div>
-
-          {/* This is your new component! */}
-          <BlogSection limit={4} />
-
-        </div>
-      </section>
+        </section>
+      )}
 
     </div>
   );

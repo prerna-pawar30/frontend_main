@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import apiService from '../../../api/ApiService'; // Adjust path
 import { HiArrowNarrowRight } from 'react-icons/hi';
 
-const BlogSection = ({ limit = 3 }) => {
+const BlogSection = ({ limit = 4 }) => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -14,15 +14,12 @@ const BlogSection = ({ limit = 3 }) => {
       try {
         const response = await apiService.getBlogs();
         
-        // Target the correct data path: response.data.data.blogs
-        // Added fallback for response.data.blogs just in case
         const allBlogs = response.data?.data?.blogs || response.data?.blogs || [];
         
-        // Only take the number of blogs specified by 'limit'
         setBlogs(allBlogs.slice(0, limit));
       } catch (error) {
         console.error("Error loading blogs:", error);
-        setBlogs([]); // Reset to empty array on error
+        setBlogs([]); 
       } finally {
         setLoading(false);
       }
@@ -30,9 +27,10 @@ const BlogSection = ({ limit = 3 }) => {
     fetchBlogs();
   }, [limit]);
 
+  // While loading, we still show the skeleton
   if (loading) {
     return (
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {[...Array(limit)].map((_, n) => (
           <div key={n} className="h-80 animate-pulse rounded-xl bg-gray-100" />
         ))}
@@ -40,10 +38,15 @@ const BlogSection = ({ limit = 3 }) => {
     );
   }
 
+  // --- HIDE LOGIC ---
+  // If there are fewer than 4 blogs, return null (renders nothing)
+  if (blogs.length < 4) {
+    return null;
+  }
+
   return (
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {blogs.map((blog) => {
-        // Fallback for image and description if field names vary
         const blogImg = blog.bannerImage || blog.featuredImage || "https://via.placeholder.com/600x400";
         const blogDesc = blog.shortDescription || blog.description || "";
 

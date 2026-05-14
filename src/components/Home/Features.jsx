@@ -251,13 +251,13 @@ const FeaturesSection = () => {
 
       <section className="py-20 overflow-hidden relative">
 
-        {/* Soft ambient bg tint */}
+        {/* Soft ambient bg tint
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(241,135,48,0.06) 0%, transparent 70%)',
           }}
-        />
+        /> */}
 
         <div className="responsive-container relative z-10">
 
