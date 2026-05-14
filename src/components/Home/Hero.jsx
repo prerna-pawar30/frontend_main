@@ -55,7 +55,7 @@ export default function Banner() {
       <div className="px-4 w-full">
         {showLoading ? (
           /* Matched Loading UI from Ecommerce */
-          <div className="w-full rounded-3xl h-[110px] sm:h-[240px] md:h-[290px] lg:h-[380px] flex items-center justify-center bg-gray-50">
+          <div className="w-full rounded-3xl h-[410px] sm:h-[240px] md:h-[290px] lg:h-[380px] flex items-center justify-center bg-gray-50">
             <div className="flex flex-col items-center">
               <div className="w-10 h-10 border-4 border-gray-300 border-t-[#E68736] rounded-full animate-spin"></div>
               <p className="mt-3 text-gray-600 font-medium">Loading...</p>

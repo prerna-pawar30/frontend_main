@@ -25,7 +25,7 @@ const DigidentAbout = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-5"
         >
           <h2 className="text-[36px] font-bold text-[#1a2b3b] font-sans">
             Digident <span className="text-[#f18730]">India</span>

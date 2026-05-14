@@ -13,6 +13,7 @@ import {
   HiPhone,
   HiSparkles,
   HiShoppingCart,
+  HiBookOpen, HiBriefcase, HiNewspaper
 } from "react-icons/hi";
 
 // Use the URL from your .env file
@@ -24,9 +25,9 @@ const MENU = [
   { to: "/product", label: "Our products", icon: <HiSparkles /> },
   { to: SHOP_URL, label: "Shop", icon: <HiShoppingBag />, isExternal: true },
   { to: "/contact", label: "Contact us", icon: <HiPhone /> },
-  { to: "/library", label: "Library", icon: <HiInformationCircle /> },
-  { to: "/career", label: "Careers", icon: <HiInformationCircle /> },
-  { to: "/blog", label: "Blogs", icon: <HiInformationCircle /> },
+  { to: "/library", label: "Library", icon: <HiBookOpen /> },
+  { to: "/career", label: "Careers", icon: <HiBriefcase /> },
+  { to: "/blog", label: "Blogs", icon: <HiNewspaper /> },
 ];
 
 export default function Header() {

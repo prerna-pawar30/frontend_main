@@ -139,49 +139,57 @@ export default function About() {
           </div>
         </section>
 
-        {/* ================= SECTION 2 : IDENTITY — UNTOUCHED ================= */}
-        <section className="relative z-20 mb-24 md:mb-32">
-          <div
-            className="flex flex-col md:flex-row rounded-[1rem]"
-            style={{ background: 'linear-gradient(160deg, #f9f0ea, #E68736 100%)' }}
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div className="w-full md:w-[45%] flex justify-center md:p-0">
-              <div className="md:-mt-36">
-                <img
-                  src={about2}
-                  alt="Innovation"
-                  className="
-                    rounded-[1rem]
-                    w-56 h-64
-                    sm:w-64 sm:h-72
-                    md:w-102 md:h-[420px]
-                    object-cover
-                    border-[4px] border-[#E68736]
-                    shadow-xl
-                  "
-                />
-              </div>
-            </div>
-            <div className="w-full md:w-[65%]  md:p-16 flex flex-col justify-center">
-              <h3 className="text-xl sm:text-2xl md:text-4xl font-bold text-[#072434] mb-6 leading-snug">
-                <span className="text-[#E68736]">At DigiDent India,</span>{" "}
-                innovation isn't optional — it's our identity.
-              </h3>
-              <div className="space-y-4 text-gray-600 text-sm md:text-base">
-                <p>
-                  Digital manufacturing defines the new gold standard in implant dentistry —
-                  delivering precision, repeatability, and speed.
-                </p>
-                <p>
-                  Our mission is to make advanced implant accessories accessible through automation,
-                  premium materials, and uncompromising engineering.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+{/* ================= SECTION 2 : IDENTITY — RESPONSIVE ================= */}
+<section className="relative z-20 mb-16 md:mb-32">
+  <div
+    className="flex flex-col md:flex-row rounded-[1.5rem] md:rounded-[1rem] overflow-hidden md:overflow-visible"
+    style={{ background: 'linear-gradient(160deg, #f9f0ea, #E68736 100%)' }}
+    data-aos="fade-up"
+    data-aos-delay="200"
+  >
+    {/* Image Container */}
+    <div className="w-full md:w-[45%] flex justify-center p-6 md:p-0">
+      {/* 
+          Mobile: Standard position, no negative margin.
+          Desktop: md:-mt-36 pulls it up.
+      */}
+      <div className="md:-mt-36 relative z-30">
+        <img
+          src={about2}
+          alt="Innovation"
+          className="
+            rounded-[1rem]
+            w-full max-w-[280px] h-[320px]
+            sm:max-w-[320px] sm:h-[380px]
+            md:w-102 md:h-[420px]
+            object-cover
+            border-[4px] border-[#E68736]
+            shadow-2xl
+          "
+        />
+      </div>
+    </div>
+
+    {/* Text Content Container */}
+    <div className="w-full md:w-[65%] p-8 sm:p-10 md:p-16 flex flex-col justify-center">
+      <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#072434] mb-6 leading-tight">
+        <span className="text-[#E68736]">At DigiDent India,</span>{" "}
+        innovation isn't optional — it's our identity.
+      </h3>
+      
+      <div className="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed">
+        <p>
+          Digital manufacturing defines the new gold standard in implant dentistry —
+          delivering precision, repeatability, and speed.
+        </p>
+        <p>
+          Our mission is to make advanced implant accessories accessible through automation,
+          premium materials, and uncompromising engineering.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* ================= SECTION 3 : TEAM — PARALLAX + 3D ================= */}
         <section className="grid md:grid-cols-2 gap-16 mb-20">
