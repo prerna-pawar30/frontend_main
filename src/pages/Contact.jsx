@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import contactImg from "../assets/contact/Contact us-png.png";
 import Swal from "sweetalert2";
@@ -13,6 +14,8 @@ export default function Contact() {
     message: "",
   });
   const [errors, setErrors] = useState({});
+  // Added loading state to track API submission status
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -50,6 +53,9 @@ export default function Contact() {
 
     if (!validateForm()) return;
 
+    // Turn loading ON and block further submissions
+    setLoading(true);
+
     try {
       const res = await apiService.createContact(form);
 
@@ -79,6 +85,9 @@ export default function Contact() {
         icon: "warning",
         confirmButtonColor: "#E68736",
       });
+    } finally {
+      // Turn loading OFF when done (regardless of success or failure)
+      setLoading(false);
     }
   };
 
@@ -95,7 +104,7 @@ export default function Contact() {
       {/* Form + Image */}
       <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-12">
         <div className="animate-fade-up animation-delay-400">
-          <h3 className="text-[30px] font-bold text-[#011632]">Get In Touch</h3>
+          <h3 className="text-[30px] font-bold text-[#011632] mb-4">Get In Touch</h3>
 
           <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <FormField
@@ -147,10 +156,24 @@ export default function Contact() {
             <div className="sm:col-span-2">
               <button
                 type="submit"
-                className="w-full sm:w-auto  text-white font-semibold py-3 px-10 rounded-lg text-[18px] transition-colors duration-300 bg-[#E68736] hover:bg-[#f59e3f] focus:outline-none focus:ring-2 focus:ring-[#E68736]/50"
-                
+                disabled={loading}
+                className={`w-full sm:w-auto text-white font-semibold py-3 px-10 rounded-lg text-[18px] transition-all duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#E68736]/50 ${
+                  loading 
+                    ? "bg-gray-400 cursor-not-allowed opacity-80" 
+                    : "bg-[#E68736] hover:bg-[#f59e3f]"
+                }`}
               >
-                Send Message
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </button>
             </div>
           </form>
