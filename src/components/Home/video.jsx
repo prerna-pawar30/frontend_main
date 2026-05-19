@@ -6,12 +6,65 @@ import { X, Play, Loader2 } from "lucide-react";
 import apiService from "../../api/ApiService";
 import "../../pages/HomeNew.css";
 
+/* ── Rotating Hexagon / Diamond Rings decoration ── */
+const RotatingHexRings = () => (
+  <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+    <style>{`
+      @keyframes spinH1 { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+      @keyframes spinH2 { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
+      @keyframes spinH3 { from { transform: rotate(45deg); }  to { transform: rotate(405deg); } }
+      .h1 { transform-origin: 210px 210px; animation: spinH1 20s linear infinite; }
+      .h2 { transform-origin: 210px 210px; animation: spinH2 32s linear infinite; }
+      .h3 { transform-origin: 210px 210px; animation: spinH3 48s linear infinite; }
+    `}</style>
+
+    {/* Static inner square ring */}
+    <rect
+      x="152" y="152" width="116" height="116" rx="8"
+      fill="none" stroke="#e0d9d0" strokeWidth="1"
+      strokeDasharray="5 9" opacity="0.5"
+      transform="rotate(45 210 210)"
+    />
+
+    {/* Ring 1 — hexagon-ish octagon */}
+    <g className="h1">
+      <polygon
+        points="210,110 270,140 295,205 270,270 210,300 150,270 125,205 150,140"
+        fill="none" stroke="#d4c4b0" strokeWidth="1" strokeDasharray="7 11"
+      />
+      <circle cx="210" cy="110" r="5" fill="#E68736" opacity="0.85"/>
+      <circle cx="295" cy="205" r="3.5" fill="#888" opacity="0.5"/>
+    </g>
+
+    {/* Ring 2 — larger rotated square */}
+    <g className="h2">
+      <rect
+        x="62" y="62" width="296" height="296" rx="12"
+        fill="none" stroke="#c8b89a" strokeWidth="1" strokeDasharray="9 15"
+        transform="rotate(22 210 210)"
+      />
+      <circle cx="358" cy="210" r="5.5" fill="#E68736" opacity="0.7"/>
+      <circle cx="62"  cy="210" r="3.5" fill="#888"    opacity="0.4"/>
+    </g>
+
+    {/* Ring 3 — outermost diamond */}
+    <g className="h3">
+      <polygon
+        points="210,18 390,210 210,400 30,210"
+        fill="none" stroke="#bfae97" strokeWidth="1" strokeDasharray="11 18"
+      />
+      <circle cx="210" cy="18"  r="5"   fill="#E68736" opacity="0.55"/>
+      <circle cx="390" cy="210" r="3.5" fill="#888"    opacity="0.35"/>
+      <circle cx="30"  cy="210" r="4"   fill="#E68736" opacity="0.4"/>
+    </g>
+  </svg>
+);
+
 export default function VideoGallery() {
-  const [videos, setVideos]       = useState([]);
-  const [loading, setLoading]     = useState(true);
+  const [videos, setVideos]           = useState([]);
+  const [loading, setLoading]         = useState(true);
   const [selectedVid, setSelectedVid] = useState(null);
 
-  /* ── RAF scroll refs ── */
   const trackRef    = useRef(null);
   const animRef     = useRef(null);
   const pausedRef   = useRef(false);
@@ -46,11 +99,9 @@ export default function VideoGallery() {
     fetchVideos();
   }, []);
 
-  /* ── same RAF loop as Category ── */
   const startLoop = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
-
     const step = () => {
       if (!pausedRef.current) {
         positionRef.current += SPEED;
@@ -78,7 +129,7 @@ export default function VideoGallery() {
 
   if (loading) {
     return (
-      <div className="py-20 flex justify-center items-center bg-white">
+      <div className="py-20 flex justify-center items-center ">
         <Loader2 className="animate-spin text-[#E68736]" size={40} />
       </div>
     );
@@ -87,10 +138,29 @@ export default function VideoGallery() {
   if (videos.length === 0) return null;
 
   return (
-    <section className="py-12 md:py-20 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-white relative overflow-visible">
+
+      {/* ── Hex rings: TOP LEFT ── */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-100px",
+          right: "-200px",
+          width: "500px",
+          height: "500px",
+          zIndex: 0,
+          pointerEvents: "none",
+          opacity: 0.85,
+        }}
+      >
+        <RotatingHexRings />
+      </div>
+
+
+
       <div className="responsive-container relative z-10">
 
-        {/* Header — original, untouched */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 md:mb-12 gap-6">
           <div className="text-center md:text-left">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#1a2b3b]">
@@ -105,7 +175,6 @@ export default function VideoGallery() {
         {/* Scroll viewport */}
         <div className="relative w-full overflow-hidden">
 
-          {/* Fade edges */}
           <div
             className="pointer-events-none absolute left-0 top-0 z-10 h-full w-6"
             style={{ background: "linear-gradient(to right, white, transparent)" }}
@@ -115,7 +184,6 @@ export default function VideoGallery() {
             style={{ background: "linear-gradient(to left, white, transparent)" }}
           />
 
-          {/* Track — cards × 2 for seamless loop */}
           <div
             ref={trackRef}
             className="flex pb-8"
@@ -127,7 +195,6 @@ export default function VideoGallery() {
                 onClick={() => { pause(); setSelectedVid(video.vId); }}
                 onMouseEnter={pause}
                 onMouseLeave={resume}
-                /* ── original card classes, untouched ── */
                 className="w-[300px] md:w-[380px] flex-shrink-0 snap-start group cursor-pointer"
               >
                 <div className="relative h-[200px] md:h-[240px] rounded-[2rem] overflow-hidden border border-[#f0e6e0] shadow-sm transition-all duration-500 group-hover:shadow-xl md:group-hover:-translate-y-2">
@@ -138,7 +205,6 @@ export default function VideoGallery() {
                     draggable={false}
                   />
 
-                  {/* Play Overlay — original */}
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 flex items-center justify-center transition-all duration-300">
                     <div className="bg-white p-4 rounded-full shadow-2xl scale-90 group-hover:scale-100 transition-transform duration-300">
                       <Play fill="#E68736" className="text-[#E68736] w-6 h-6 ml-1" />
@@ -163,7 +229,7 @@ export default function VideoGallery() {
         </div>
       </div>
 
-      {/* Lightbox — original, untouched */}
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedVid && (
           <motion.div
@@ -186,7 +252,6 @@ export default function VideoGallery() {
               >
                 <X size={24} />
               </button>
-
               <iframe
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${selectedVid}?autoplay=1&rel=0&modestbranding=1`}

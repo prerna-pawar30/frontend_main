@@ -15,6 +15,34 @@ const ToothWatermark = () => (
   </svg>
 );
 
+/* ── Reusable Rotating Circles SVG ── */
+const RotatingCircles = () => (
+  <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+    <style>{`
+      @keyframes spin1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes spin2 { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+      @keyframes spin3 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      .r1 { transform-origin: 210px 210px; animation: spin1 18s linear infinite; }
+      .r2 { transform-origin: 210px 210px; animation: spin2 28s linear infinite; }
+      .r3 { transform-origin: 210px 210px; animation: spin3 40s linear infinite; }
+    `}</style>
+    <circle cx="210" cy="210" r="62" fill="none" stroke="#e0d9d0" strokeWidth="1" strokeDasharray="4 8" opacity="0.5"/>
+    <g className="r1">
+      <circle cx="210" cy="210" r="100" fill="none" stroke="#d4c4b0" strokeWidth="1" strokeDasharray="6 10"/>
+      <circle cx="210" cy="110" r="5" fill="#E68736" opacity="0.85"/>
+      <circle cx="310" cy="210" r="3.5" fill="#888" opacity="0.5"/>
+    </g>
+    <g className="r2">
+      <circle cx="210" cy="210" r="148" fill="none" stroke="#c8b89a" strokeWidth="1" strokeDasharray="8 14"/>
+      <circle cx="358" cy="210" r="5.5" fill="#E68736" opacity="0.7"/>
+    </g>
+    <g className="r3">
+      <circle cx="210" cy="210" r="195" fill="none" stroke="#bfae97" strokeWidth="1" strokeDasharray="10 18"/>
+      <circle cx="210" cy="15" r="5" fill="#E68736" opacity="0.55"/>
+    </g>
+  </svg>
+);
+
 const BrandCard = ({ brand, idx }) => {
   const [flipped, setFlipped] = useState(false);
 
@@ -28,7 +56,7 @@ const BrandCard = ({ brand, idx }) => {
       style={{ perspective: '1000px' }}
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
-      onClick={() => setFlipped(!flipped)} // Better for touch devices
+      onClick={() => setFlipped(!flipped)}
     >
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
@@ -69,7 +97,7 @@ const BrandCard = ({ brand, idx }) => {
             transform: 'rotateY(180deg)' 
           }}
         >
-          <a
+          <a 
             href={`${SHOP_BASE_URL}/all-products?brand=${brand._id}`}
             onClick={(e) => e.stopPropagation()}
             className="block w-full h-full rounded-xl md:rounded-2xl bg-white border-2 border-orange-200/50 shadow-lg overflow-hidden"
@@ -111,7 +139,40 @@ export default function Brands() {
   }, []);
 
   return (
-    <section className="py-8 md:py-16 overflow-hidden relative">
+    <section className="py-8 md:py-16 relative overflow-visible">
+
+      {/* ── Circles: TOP RIGHT ── */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-40px",
+          left: "-80px",
+          width: "500px",
+          height: "500px",
+          zIndex: 0,
+          pointerEvents: "none",
+          opacity: 0.9,
+        }}
+      >
+        <RotatingCircles />
+      </div>
+
+      {/* ── Circles: BOTTOM LEFT ── */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-480px",
+          right: "-80px",
+          width: "500px",
+          height: "500px",
+          zIndex: 0,
+          pointerEvents: "none",
+          opacity: 0.9,
+        }}
+      >
+        <RotatingCircles />
+      </div>
+
       <div className="px-4 sm:px-6 lg:max-w-7xl mx-auto relative z-10">
         
         {/* Header */}

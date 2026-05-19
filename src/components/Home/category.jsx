@@ -74,7 +74,7 @@ export default function Category() {
   const cards = exploreData.data;
 
   return (
-    <section className="relative py-16 bg-white overflow-hidden">
+    <section className="relative py-16  overflow-hidden">
       <div className="responsive-container">
 
         {/* Header Section — unchanged */}
