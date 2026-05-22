@@ -83,7 +83,7 @@ export default function Bestselling() {
 
   return (
     <section className="relative py-16 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+      <div className=" px-6 text-center relative z-10">
 
         {/* Header — original, untouched */}
         <div className="mb-12" data-aos="fade-down">

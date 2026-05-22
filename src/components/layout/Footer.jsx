@@ -100,17 +100,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/Shipping-Policy" state={{ activeTab: "shipping" }} className="hover:text-[#E6762E] cursor-pointer text-[18px]">
+                <Link to="/shipping-policy" state={{ activeTab: "shipping" }} className="hover:text-[#E6762E] cursor-pointer text-[18px]">
                   Shipping Policy
                 </Link>
               </li>
               <li>
-                <Link to="/TermsOfUse" state={{ activeTab: "terms" }} className="hover:text-[#E6762E] cursor-pointer text-[18px]">
+                <Link to="/terms-of-use" state={{ activeTab: "terms" }} className="hover:text-[#E6762E] cursor-pointer text-[18px]">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link to="/Return-Policy" state={{ activeTab: "return" }} className="hover:text-[#E6762E] cursor-pointer text-[18px]">
+                <Link to="/return-policy" state={{ activeTab: "return" }} className="hover:text-[#E6762E] cursor-pointer text-[18px]">
                   Exchange & Return Policy
                 </Link>
               </li>

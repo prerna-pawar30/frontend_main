@@ -173,7 +173,7 @@ export default function Brands() {
         <RotatingCircles />
       </div>
 
-      <div className="px-4 sm:px-6 lg:max-w-7xl mx-auto relative z-10">
+      <div className="px-4 sm:px-6  relative z-10">
         
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">

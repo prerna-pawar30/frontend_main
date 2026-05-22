@@ -1,4 +1,10 @@
 /* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FiArrowRight } from "react-icons/fi";
+import apiService from '../api/ApiService';
+
+// Section Component Imports
 import Hero from "../components/Home/Hero.jsx";
 import Brands from "../components/Home/Brand.jsx";
 import Category from "../components/Home/category.jsx";
@@ -8,12 +14,7 @@ import Testimonials from "../components/Home/testimonial.jsx";
 import Support from "../components/Home/support.jsx";
 import DigidentAbout from "../components/Home/About.jsx";
 import FeaturesSection from "../components/Home/Features.jsx";
-import { Link,  } from 'react-router-dom';
 import BlogSection from '../components/blogs/homepage-blog/Blog.jsx'; 
-import { FiArrowRight } from "react-icons/fi";
-import React, { useEffect, useState } from 'react';
-import apiService from '../api/ApiService';
-
 
 export default function HomeNew() {
   const [hasEnoughBlogs, setHasEnoughBlogs] = useState(false);
@@ -24,9 +25,10 @@ export default function HomeNew() {
       try {
         const response = await apiService.getBlogs();
         const allBlogs = response.data?.data?.blogs || response.data?.blogs || [];
-        // Only show if there are 4 or more blogs
+        // Only show section if there are 4 or more blogs
         setHasEnoughBlogs(allBlogs.length >= 4);
       } catch (error) {
+        console.error("Error validation on blogs layout:", error);
         setHasEnoughBlogs(false);
       } finally {
         setLoading(false);
@@ -83,30 +85,39 @@ export default function HomeNew() {
         <VideoGallery />
       </div>
        
-{!loading && hasEnoughBlogs && (
-        <section className="py-15 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-12 flex flex-col items-end justify-between gap-4 md:flex-row md:items-center">
-              <div>
-                <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-[#E68736]">
-                  Our Journal
-                </p>
-                <h2 className="text-3xl font-black text-slate-900 md:text-4xl">
-                  Latest <span className="text-[#E68736]">Insights</span>
-                </h2>
-              </div>
-              
+      {/* Blog Section Layout with integrated responsive-container styles */}
+      {!loading && hasEnoughBlogs && (
+        <section className="w-full max-w-[1400px] mx-auto px-4 py-12 md:py-20 relative z-10">
+          
+          {/* Header row: split to opposite sides on mobile & desktop */}
+          <div className="mb-8 md:mb-12 flex flex-row items-end justify-between gap-2">
+            
+            {/* Title Group (Stays Left) */}
+            <div className="space-y-1 pr-2">
+              <p className="text-[9px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#E68736] whitespace-nowrap">
+                Our Journal
+              </p>
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-tight">
+                Latest <span className="text-[#E68736]">Insights</span>
+              </h2>
+            </div>
+            
+            {/* Link Button (Stays Right) */}
+            <div className="flex-shrink-0 pb-0.5">
               <Link 
                 to="/blog" 
-                className="group inline-flex items-center gap-2 font-bold text-slate-900 hover:text-[#E68736] transition-colors"
+                className="group inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-base font-bold text-slate-900 hover:text-[#E68736] transition-colors whitespace-nowrap"
               >
-                View All Articles
-                <FiArrowRight size={24} /> 
+                <span>View All</span>
+                <span className="hidden sm:inline"> Articles</span>
+                <FiArrowRight size={18} className="transition-transform group-hover:translate-x-1 sm:w-6 sm:h-6" /> 
               </Link>
             </div>
 
-            <BlogSection limit={4} />
           </div>
+
+          {/* Render Cards Grid */}
+          <BlogSection limit={4} />
         </section>
       )}
 

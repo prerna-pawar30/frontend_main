@@ -55,9 +55,9 @@ const AppRoutes = () => {
       <Route path="/testimonial" element={<Testimonials />} />
       <Route path="/policies" element={<Policies />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="/Shipping-Policy" element={<ShippingPolicy />} />
-      <Route path="/Return-Policy" element={<ReturnPolicy />} />
-      <Route path="/TermsOfUse" element={<TermsOfUse />} />
+      <Route path="/shipping-policy" element={<ShippingPolicy />} />
+      <Route path="/return-policy" element={<ReturnPolicy />} />
+      <Route path="/terms-of-use" element={<TermsOfUse />} />
       <Route path="/digident-about" element={<DigidentAbout />} />
       <Route path="/features" element={<FeaturesSection />} />
       <Route path="/career" element={<Career />} />
