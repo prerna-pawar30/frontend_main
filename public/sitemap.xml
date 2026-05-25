@@ -4,7 +4,7 @@
 
   <!-- Home -->
   <url>
-    <loc>https://digident.in/</loc>
+    <loc>https://frontendmaindigi.netlify.app/</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -12,42 +12,42 @@
 
   <!-- Main Pages -->
   <url>
-    <loc>https://digident.in/about</loc>
+    <loc>https://frontendmaindigi.netlify.app/about</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/product</loc>
+    <loc>https://frontendmaindigi.netlify.app/product</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/contact</loc>
+    <loc>https://frontendmaindigi.netlify.app/contact</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/library</loc>
+    <loc>https:///library</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/career</loc>
+    <loc>https://frontendmaindigi.netlify.app/career</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/blog</loc>
+    <loc>https://frontendmaindigi.netlify.app/blog</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -55,28 +55,28 @@
 
   <!-- Product Pages -->
   <url>
-    <loc>https://digident.in/product/scanbody</loc>
+    <loc>https://frontendmaindigi.netlify.app/product/scanbody</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/product/abutment</loc>
+    <loc>https://frontendmaindigi.netlify.app/product/abutment</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/product/lab-analog</loc>
+    <loc>https://frontendmaindigi.netlify.app/product/lab-analog</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/product/screw</loc>
+    <loc>https://frontendmaindigi.netlify.app/product/screw</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -84,28 +84,28 @@
 
   <!-- Policy Pages -->
   <url>
-    <loc>https://digident.in/privacy-policy</loc>
+    <loc>https://frontendmaindigi.netlify.app/privacy-policy</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/shipping-policy</loc>
+    <loc>https://frontendmaindigi.netlify.app/shipping-policy</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/return-policy</loc>
+    <loc>https://frontendmaindigi.netlify.app/return-policy</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://digident.in/terms-of-use</loc>
+    <loc>https://frontendmaindigi.netlify.app/terms-of-use</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
