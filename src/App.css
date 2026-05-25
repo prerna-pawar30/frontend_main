@@ -1,7 +1,14 @@
-/* App layout */
+App layout
 html,
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 .app-shell {
@@ -13,13 +20,11 @@ body {
 .container {
   max-width: 1550px;
   margin: 0 auto;
-  /* padding: 1rem; */
+  padding: 0 1.5rem;
 }
 
 .content {
   width: 100%;
-  padding-top: 50px;
-  padding-bottom: 1.5rem;
-  padding-right: 0;
+  padding: 50px 0 1.5rem;
   flex: 1 0 auto;
 }

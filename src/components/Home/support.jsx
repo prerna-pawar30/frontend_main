@@ -3,7 +3,6 @@ import "aos/dist/aos.css";
 import "../../pages/HomeNew.css";
 import { Send } from "lucide-react";
 
-// Inline keyframes injected once for the custom SVG line animation
 const lineStyle = `
   @keyframes bgline-draw {
     0%   { stroke-dashoffset: 1200; opacity: 0; }
@@ -62,15 +61,15 @@ const RotatingCircles = () => (
   </svg>
 );
 
-
 export default function Support() {
   return (
-    <section className="relative py-8 md:py-24 bg-white overflow-hidden">
-       {/* ── Circles: TOP LEFT ── */}
+    <section className="relative py-8 md:py-24">
+
+      {/* ── Circles: TOP LEFT ── */}
       <div
         style={{
           position: "absolute",
-          top: "-140px",
+          top: "-90px",
           left: "-80px",
           width: "500px",
           height: "500px",
@@ -81,11 +80,28 @@ export default function Support() {
       >
         <RotatingCircles />
       </div>
-      
+
+      {/* ── Circles: BOTTOM RIGHT ──
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-400px",
+          right: "-80px",
+          width: "500px",
+          height: "500px",
+          zIndex: 0,
+          pointerEvents: "none",
+          opacity: 0.9,
+        }}
+      > */}
+        {/* <RotatingCircles />
+      </div> */}
+
       <style>{lineStyle}</style>
-      <div className="responsive-container px-4 ">
+
+      <div className="">
         <div
-          className="rounded-[2rem] md:rounded-[2.5rem] py-12 px-6 md:py-24 text-center relative z-10 overflow-hidden flex flex-col justify-center items-center bg-[#1a2b3b] bg-gradient-to-br from-[#1e293b] via-[#0f172a] via-60% to-[#2d1a0a] border-[1.5px] border-[#e68736]/40 min-h-[400px]"
+          className="relative rounded-[1.5rem] md:rounded-[2.5rem] py-12 md:py-24 text-center overflow-hidden flex flex-col justify-center items-center bg-gradient-to-br from-[#1e293b] via-[#0f172a] via-60% to-[#2d1a0a] border border-[rgba(230,135,54,0.2)] min-h-[400px]"
           data-aos="fade-up"
         >
           {/* ── Background Lines Animation ── */}
@@ -108,6 +124,15 @@ export default function Support() {
             ))}
           </svg>
 
+          {/* Dot Grid Pattern — matches Brands section */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: "radial-gradient(circle, rgba(230,135,54,0.1) 1px, transparent 1px)",
+              backgroundSize: "24px 24px",
+            }}
+          />
+
           {/* Corner Glows */}
           <div className="absolute top-0 left-0 w-32 h-32 md:w-64 md:h-64 bg-orange-500/10 blur-[60px] md:blur-[100px] pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-orange-500/5 blur-[60px] md:blur-[100px] pointer-events-none" />
@@ -116,7 +141,7 @@ export default function Support() {
           <div className="absolute inset-0 pointer-events-none opacity-30 bg-gradient-to-r from-white/5 via-transparent via-50%" />
 
           {/* Content */}
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="relative z-10 max-w-4xl mx-auto px-6">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-white tracking-tight leading-[1.1]">
               Supporting you at <span className="text-[#E68736]">every step</span>
             </h2>
@@ -125,7 +150,6 @@ export default function Support() {
               to ensure a seamless experience from start to finish.
             </p>
             <div className="flex justify-center w-full">
-              {/* Fixed the missing <a> opening element tag below */}
               <a
                 href="/Contact"
                 className="group relative inline-flex items-center justify-center gap-4 py-4 px-8 md:px-12 rounded-xl md:rounded-2xl font-black text-lg md:text-xl transition-all duration-300 w-full sm:w-auto bg-[#E68736] text-white shadow-[0_10px_25px_rgba(230,135,54,0.3)] hover:-translate-y-0.5 hover:shadow-[0_15px_30px_rgba(230,135,54,0.4)]"

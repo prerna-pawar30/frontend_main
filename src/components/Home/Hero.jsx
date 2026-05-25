@@ -52,7 +52,7 @@ export default function Banner() {
 
   return (
     <section className="py-14 md:py-20 bg-white w-full">
-      <div className="px-4 w-full">
+      <div className=" w-full">
         {showLoading ? (
           /* Matched Loading UI from Ecommerce */
           <div className="w-full rounded-3xl h-[410px] sm:h-[240px] md:h-[290px] lg:h-[380px] flex items-center justify-center bg-gray-50">

@@ -17,7 +17,6 @@ export default function Bestselling() {
     error: null,
   });
 
-  /* ── RAF scroll refs ── */
   const trackRef    = useRef(null);
   const animRef     = useRef(null);
   const pausedRef   = useRef(false);
@@ -46,7 +45,6 @@ export default function Bestselling() {
     fetchBestSelling();
   }, []);
 
-  /* ── same RAF loop as Category ── */
   const startLoop = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -73,19 +71,18 @@ export default function Bestselling() {
     }
   }, [bestSellingData.loading, bestSellingData.data, startLoop]);
 
-  const pause  = () => { pausedRef.current = true;  };
+  const pause  = () => { pausedRef.current = true; };
   const resume = () => { pausedRef.current = false; };
 
-  /* original hide condition */
   if (bestSellingData.loading || bestSellingData.data.length < 4) return null;
 
   const cards = bestSellingData.data;
 
   return (
-    <section className="relative py-16 bg-white overflow-hidden">
-      <div className=" px-6 text-center relative z-10">
+    <section className=" py-16">
+      <div className="text-center relative z-10">
 
-        {/* Header — original, untouched */}
+        {/* Header */}
         <div className="mb-12" data-aos="fade-down">
           <h2 className="text-4xl md:text-5xl font-bold text-[#072434] mb-3">
             Best Selling <span className="text-[#E68736]">Range</span>
@@ -106,62 +103,148 @@ export default function Bestselling() {
             style={{ background: "linear-gradient(to left, white, transparent)" }}
           />
 
-          {/* Track — cards × 2 for seamless loop */}
+          {/* Track */}
           <div
             ref={trackRef}
-            className="flex py-4"
-            style={{ willChange: "transform", width: "max-content", gap: "20px" }}
+            className="flex py-6"
+            style={{ willChange: "transform", width: "max-content", gap: "24px" }}
           >
             {[...cards, ...cards].map((b, i) => (
               <div
                 key={`best-${i}`}
                 onMouseEnter={pause}
                 onMouseLeave={resume}
-                style={{ width: "260px", flexShrink: 0, cursor: "default" }}
-                /* ── original card classes, untouched ── */
-                className="category-card rounded-[25px] border-2 border-gray-200 bg-white p-6 flex flex-col h-[350px] transition-all duration-300 hover:shadow-md"
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
+                style={{
+                  width: "240px",
+                  flexShrink: 0,
+                  cursor: "default",
+                  height: "360px",
+                  borderRadius: "25px",
+                  border: "2px solid #FDDCB5",
+                  backgroundColor: "#fff",
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "stretch",
+                  boxSizing: "border-box",
+                  transition: "box-shadow 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  pausedRef.current = true;
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)";
+                }}
+                onMouseLeave={(e) => {
+                  pausedRef.current = false;
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
-                {/* Image Area — original */}
-                <div className="w-full h-48 flex items-center justify-center mb-4 overflow-hidden">
+                {/* Image area — fixed height, neutral warm bg */}
+                <div
+                  style={{
+                    width: "100%",
+                    height: "180px",
+                    flexShrink: 0,
+                    backgroundColor: "#FFF8F0",
+                    borderRadius: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    overflow: "hidden",
+                    marginBottom: "16px",
+                  }}
+                >
                   <img
                     src={Array.isArray(b.images) ? b.images[0] : (b.image || b.images)}
                     alt={b.name}
-                    className="max-h-full object-contain transition-transform duration-500 hover:scale-110"
                     draggable={false}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      transition: "transform 0.4s ease",
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.08)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
                   />
                 </div>
 
-                {/* Text Area — original */}
-                <div className="text-left w-full flex flex-col flex-grow">
-                  <h3 className="text-[16px] font-bold text-[#072434] leading-tight line-clamp-2 mb-4">
+                {/* Text + button */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    flex: 1,
+                    textAlign: "left",
+                  }}
+                >
+                  {/* Product name — 2-line clamp, reserved min-height */}
+                  <h3
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: "700",
+                      color: "#072434",
+                      lineHeight: "1.4",
+                      margin: 0,
+                      marginBottom: "8px",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      minHeight: "42px",
+                    }}
+                  >
                     {b.name} Compatible {b.category?.name}
                   </h3>
 
-                  <div className="flex w-full">
-                    <a
-                      href={`${SHOP_BASE_URL}/hot-selling?product=${b.productId}`}
-                      style={{ cursor: "pointer" }}
-                      onClick={(e) => e.stopPropagation()}
-                      className="w-full flex items-center justify-center gap-2 bg-[#E68736] hover:bg-white hover:text-[#E68736] border border-[#E68736] text-white py-2 rounded-xl text-[17px] font-bold transition-all active:scale-95"
-                    >
-                      <FiShoppingCart size={20} />
-                      Shop Now
-                    </a>
-                  </div>
+                  {/* Spacer — pushes button to bottom */}
+                  <div style={{ flex: 1 }} />
+
+                  {/* Shop Now button */}
+                  <a
+                    href={`${SHOP_BASE_URL}/hot-selling?product=${b.productId}`}
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px",
+                      background: "#E68736",
+                      color: "#fff",
+                      border: "1px solid #E68736",
+                      borderRadius: "12px",
+                      padding: "10px 0",
+                      fontSize: "15px",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      textDecoration: "none",
+                      width: "100%",
+                      transition: "background 0.2s, color 0.2s, transform 0.15s",
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background = "#fff";
+                      e.currentTarget.style.color = "#E68736";
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background = "#E68736";
+                      e.currentTarget.style.color = "#fff";
+                    }}
+                    onMouseDown={e => { e.currentTarget.style.transform = "scale(0.97)"; }}
+                    onMouseUp={e => { e.currentTarget.style.transform = "scale(1)"; }}
+                  >
+                    <FiShoppingCart size={18} />
+                    Shop Now
+                  </a>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* View More Button — original, untouched */}
+        {/* View More Button */}
         <div className="mt-12">
           <a
             href={`${SHOP_BASE_URL}/hot-selling`}
-            className="inline-block  text-white hover:text-white py-4 px-12 rounded-xl font-bold text-xl transition-all duration-300 bg-[#E68736] hover:bg-[#E68736]/90"
-              
+            className="inline-block text-white hover:text-white py-4 px-12 rounded-xl font-bold text-xl transition-all duration-300 bg-[#E68736] hover:bg-[#E68736]/90"
           >
             View More
           </a>
