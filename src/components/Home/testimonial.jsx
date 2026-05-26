@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
-// 1. Import apiService and remove axios/config imports
 import apiService from "../../api/ApiService"; 
 import "../../pages/HomeNew.css";
 
@@ -21,13 +18,6 @@ export default function Testimonials() {
   const testimonialsSwiperRef = useRef(null);
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      easing: "ease-in-out",
-      offset: 120,
-    });
-
     const fetchTestimonials = async () => {
       try {
         // 2. Use the service method instead of axios.get(TestimonialsUrl)

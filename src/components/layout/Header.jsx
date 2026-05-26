@@ -79,7 +79,7 @@ export default function Header() {
     <>
       {/* Header Container */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-md flex items-center
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-md flex items-center
           ${isScrolled ? "backdrop-blur-sm bg-[#F7E6DC]/70" : "bg-[#F7E6DC]"}
           ${shrink ? "h-[65px]" : "h-[85px]"}
         `}

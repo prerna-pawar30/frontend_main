@@ -28,3 +28,32 @@ body {
   padding: 50px 0 1.5rem;
   flex: 1 0 auto;
 }
+
+.page-transition-root {
+  will-change: transform, opacity;
+}
+
+.page-loader {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.page-loader__bar {
+  width: min(200px, 40vw);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e68736, #f4a261);
+  transform-origin: left center;
+}
+
+.page-loader__text {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+}

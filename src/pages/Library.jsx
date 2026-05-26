@@ -9,6 +9,7 @@ import LibraryFilters from "../components/library/LibraryFilters";
 import LibraryHero from "../components/library/LibraryHero";
 import LibraryCard from "../components/library/LibraryCard";
 import VerificationModal from "../components/library/VerificationModal";
+import Reveal from "../components/ui/Reveal";
 
 const CATEGORY_MAP = {
   General: "GEN",
@@ -88,19 +89,24 @@ const Library = () => {
 
   return (
     <div className="min-h-screen py-10 md:py-12 px-4 md:px-6">
-      <LibraryHeader />
-      
+      <Reveal>
+        <LibraryHeader />
+      </Reveal>
+
+      <Reveal delay={0.06}>
       <LibraryFilters 
         searchTerm={searchTerm} 
         setSearchTerm={setSearchTerm} 
         selectedCategory={selectedCategory} 
         setSelectedCategory={setSelectedCategory} 
       />
+      </Reveal>
 
+      <Reveal>
       <LibraryHero selectedCategory={selectedCategory} />
+      </Reveal>
 
-      {/* Note & Request Sections */}
-      <div className="max-w-7xl mx-auto mb-8 space-y-4">
+      <Reveal className="max-w-7xl mx-auto mb-8 space-y-4">
         <div className="flex items-start gap-4 p-4 md:p-5 rounded-2xl bg-orange-50 border border-orange-200">
           <div className="flex-shrink-0 w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-[#E68736]">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -143,14 +149,14 @@ const Library = () => {
             Send Request
           </button>
         </div>
-      </div>
+      </Reveal>
 
       {loading ? (
         <div className="flex justify-center py-20">
           <div className="w-10 h-10 border-2 border-t-[#E68736] rounded-full animate-spin"></div>
         </div>
       ) : (
-        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+        <Reveal className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {filteredBrands.map((brand) => (
             <LibraryCard 
               key={brand.libraryId || brand.id} 
@@ -165,7 +171,7 @@ const Library = () => {
               No brands found
             </div>
           )}
-        </div>
+        </Reveal>
       )}
 
       {showModal && (

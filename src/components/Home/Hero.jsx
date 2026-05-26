@@ -38,16 +38,6 @@ export default function Banner() {
     fetchBanners();
   }, []);
 
-  /* ================= AOS INIT ================= */
-  useEffect(() => {
-    const loadAOS = async () => {
-      const AOS = (await import("aos")).default;
-      await import("aos/dist/aos.css");
-      AOS.init({ duration: 1000, once: true, easing: "ease-in-out" });
-    };
-    loadAOS();
-  }, []);
-
   const showLoading = loading || banners.length === 0;
 
   return (

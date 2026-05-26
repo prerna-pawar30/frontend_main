@@ -4,6 +4,7 @@ import contactImg from "../assets/contact/Contact us-png.png";
 import Swal from "sweetalert2";
 import apiService from "../api/ApiService";
 import FormField from "../components/ui/FormField";
+import Reveal from "../components/ui/Reveal";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -93,17 +94,15 @@ export default function Contact() {
 
   return (
     <div className="py-16 bg-white">
-      {/* Heading */}
-      <div className="text-center px-6 ">
+      <Reveal className="text-center px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-[#072434]">
           Contact <span className="text-[#E68736]">Us</span>
         </h2>
         <p className="text-[18px] text-gray-400 mt-2">Drop us a Message</p>
-      </div>
+      </Reveal>
 
-      {/* Form + Image */}
       <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-12">
-        <div className="animate-fade-up animation-delay-400">
+        <Reveal delay={0.1}>
           <h3 className="text-[30px] font-bold text-[#011632] mb-4">Get In Touch</h3>
 
           <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -177,15 +176,14 @@ export default function Contact() {
               </button>
             </div>
           </form>
-        </div>
+        </Reveal>
 
-        <div className="flex justify-center md:justify-end animate-fade-up">
+        <Reveal variant="slideRight" className="flex justify-center md:justify-end">
           <img src={contactImg} className="w-[450px] md:w-[650px] lg:w-[1000px]" alt="Contact" />
-        </div>
+        </Reveal>
       </div>
 
-      {/* Info Cards */}
-      <div className="w-full justify-center mt-16 px-12">
+      <Reveal className="w-full justify-center mt-16 px-12">
         <div className="relative p-[2px] rounded-2xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#E68736] via-[#f7c7a1] to-[#E68736] animate-corner-flow"></div>
           <div className="relative bg-white rounded-2xl p-10 w-full border border-gray-200">
@@ -216,17 +214,16 @@ export default function Contact() {
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
 
-      {/* Map */}
-      <div className="mt-16 rounded overflow-hidden px-12 animate-fade-up">
+      <Reveal className="mt-16 rounded overflow-hidden px-12">
         <iframe
           title="Digident location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.5186419790215!2d75.86714097530438!3d22.70802772796112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fce63b7b2507%3A0xc3995874288001e9!2sDigident%20India%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
           className="w-full h-80 border-0"
           loading="lazy"
         />
-      </div>
+      </Reveal>
     </div>
   );
 }

@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 import apiService from "../../api/ApiService";
 import { FiShoppingCart } from "react-icons/fi";
@@ -24,8 +22,6 @@ export default function Bestselling() {
   const SPEED       = 0.5;
 
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true, easing: "ease-in-out" });
-
     const fetchBestSelling = async () => {
       try {
         const res = await apiService.getBestSelling();

@@ -5,7 +5,12 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: prefersReduced ? "auto" : "smooth",
+    });
   }, [pathname]);
 
   return null;
