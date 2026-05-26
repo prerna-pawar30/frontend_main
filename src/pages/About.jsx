@@ -4,8 +4,6 @@
 // Sections 3 & 4 get parallax + 3D depth animations
 
 import React, { useEffect, useRef, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { motion, useScroll, useTransform, useInView, animate } from "framer-motion";
 
 import about1 from "../assets/aboutus/aboutus.webp";
@@ -92,15 +90,6 @@ const StatCard = ({ val, label, delay = 0 }) => {
 };
 
 export default function About() {
-  useEffect(() => {
-    AOS.init({
-      duration: 900,
-      easing: "ease-out-cubic",
-      once: true,
-      offset: 80,
-    });
-  }, []);
-
   return (
     <div className="bg-white font-sans text-[#1a2b3b] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 py-10 md:py-12">

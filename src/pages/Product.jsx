@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Reveal from "../components/ui/Reveal";
 import scanBody1 from "../assets/products/labanalog.webp";
 import scanBody2 from "../assets/products/scanbody1.webp";
 import aboutmentImg from "../assets/products/aboutment.webp";
@@ -85,18 +86,16 @@ export default function Products() {
       <div className="pointer-events-none absolute -right-20 -top-20 h-[300px] w-[400px] sm:h-[400px] sm:w-[600px] rounded-full bg-[radial-gradient(circle,rgba(230,135,54,0.12)_0%,transparent_70%)]" />
       <div className="pointer-events-none absolute -bottom-14 -left-14 h-[250px] w-[400px] sm:h-[300px] sm:w-[600px] rounded-full bg-[radial-gradient(circle,rgba(230,135,54,0.08)_0%,transparent_70%)]" />
 
-      {/* Header */}
-      <div className="mb-6 sm:mb-9 text-center">
+      <Reveal className="mb-6 sm:mb-9 text-center">
         <h1 className="text-[clamp(26px,6vw,36px)] font-black leading-none text-[#072434]">
           Our <span className="text-[#E68736]">Products</span>
         </h1>
         <p className="mt-2 text-[12px] sm:text-[14px] font-normal tracking-[0.1em] text-[#a08060]">
           Precision-Engineered Dental Solutions
         </p>
-      </div>
+      </Reveal>
 
-      {/* Tabs */}
-      <div className="mb-6 sm:mb-9 flex flex-wrap justify-center gap-1.5 sm:gap-2">
+      <Reveal delay={0.08} className="mb-6 sm:mb-9 flex flex-wrap justify-center gap-1.5 sm:gap-2">
         {products.map((p, i) => (
           <button
             key={i}
@@ -110,10 +109,9 @@ export default function Products() {
             {p.title}
           </button>
         ))}
-      </div>
+      </Reveal>
 
-      {/* Card Container Framework */}
-      <div className="relative mx-auto h-[520px] w-full max-w-[980px] [perspective:1400px] sm:h-[480px] md:h-[580px]">
+      <Reveal variant="scaleFade" delay={0.12} className="relative mx-auto h-[520px] w-full max-w-[980px] [perspective:1400px] sm:h-[480px] md:h-[580px]">
         {products.map((p, i) => {
           const pos = getPos(i, current, n);
           const isExiting = exitIdx === i;
@@ -198,10 +196,9 @@ export default function Products() {
             </div>
           );
         })}
-      </div>
+      </Reveal>
 
-      {/* Navigation Buttons */}
-      <div className="mt-6 sm:mt-8 flex items-center justify-center gap-4">
+      <Reveal delay={0.15} className="mt-6 sm:mt-8 flex items-center justify-center gap-4">
         <button
           className="flex h-[44px] w-[44px] sm:h-[52px] sm:w-[52px] cursor-pointer items-center justify-center rounded-full border-2 border-[#E68736] bg-white text-[18px] sm:text-[22px] font-bold text-[#E68736] shadow-[0_4px_12px_rgba(230,135,54,0.2)] transition-all hover:bg-[#E68736] hover:text-white hover:scale-110 active:scale-95"
           onClick={slidePrev}
@@ -214,7 +211,7 @@ export default function Products() {
         >
           →
         </button>
-      </div>
+      </Reveal>
     </div>
   );
 }
